@@ -1,0 +1,24 @@
+# Matches on any directory
+*.diff
+*.exe
+*.mode1v3
+*.orig
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.swp
+.DS_Store
+nimcache
+project.xcworkspace/
+tags
+xcuserdata/
+
+# Full paths.
+/.vimrc.local
+/LICENSE.html
+/README.html
+/build/
+/docindex.html
+/docs/*.html
+/nakefile
+/resources/html/*.html
