@@ -20,5 +20,6 @@ xcuserdata/
 /build/
 /docindex.html
 /docs/*.html
+/logic/l_main
 /nakefile
 /resources/html/*.html
