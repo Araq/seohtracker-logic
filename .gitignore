@@ -20,6 +20,8 @@ xcuserdata/
 /build/
 /docindex.html
 /docs/*.html
+/interactive/seohyun
+/interactive/seohyun.sqlite3
 /logic/l_main
 /nakefile
 /resources/html/*.html

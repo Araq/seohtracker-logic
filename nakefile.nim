@@ -110,3 +110,9 @@ task "clean", "Removes temporal files, mainly":
     if ext == ".html":
       echo "Removing ", path
       path.removeFile()
+
+task "test", "Compiles and runs some tests":
+  withDir("interactive"):
+    echo "Attempting to compile interactive seohyun"
+    direShell("nimrod c seohyun.nim")
+  echo "Finished running tests"
