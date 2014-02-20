@@ -1,0 +1,33 @@
+# Matches on any directory
+*.diff
+*.exe
+*.mode1v3
+*.orig
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.swp
+.DS_Store
+nimcache
+project.xcworkspace/
+tags
+xcuserdata/
+
+# Full paths.
+/.vimrc.local
+/LICENSE.html
+/README.html
+/build/
+/docindex.html
+/docs/*.html
+/logic/*.html
+/logic/l_main
+/nakefile
+/resources/html/*.html
+/tests/csv_export/dump_out.csv
+/tests/csv_export/seohyun.sqlite3
+/tests/csv_import/out.csv
+/tests/csv_import/seohyun.sqlite3
+/tests/interactive/seohyun
+/tests/interactive/seohyun.sqlite3
+/tests/newer_db_version/seohyun.sqlite3
