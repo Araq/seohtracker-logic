@@ -114,7 +114,16 @@ task "clean", "Removes temporal files, mainly":
       echo "Removing ", path
       path.removeFile()
 
-task "test", "Compiles and runs some tests":
+proc compile_logic() =
+  withDir("logic"):
+    echo "Attempting to compile logic"
+    direShell("nimrod c --verbosity:0 l_main.nim")
+
+task "c", "Compiles the logic module":
+  compile_logic()
+  echo "Compiled"
+
+task "test", "Compiles stuff and runs some tests":
   withDir("tests/interactive"):
     echo "Attempting to compile interactive seohyun"
     direShell("nimrod c --verbosity:0 seohyun.nim")
