@@ -1,4 +1,10 @@
-## Defines global types, enums and consts.
+## `Seohtracker logic <https://github.com/gradha/seohtracker-logic>`_ types
+## module.
+##
+## Defines global types, enums and consts for the logic. There is no need to
+## import this explicitly, the `l_main module <l_main.html>`_ already exports
+## the necessary stuff.
+
 import times, l_log, strutils
 
 type

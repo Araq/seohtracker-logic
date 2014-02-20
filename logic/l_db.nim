@@ -1,3 +1,11 @@
+## `Seohtracker logic <https://github.com/gradha/seohtracker-logic>`_ database
+## module.
+##
+## Contains all the SQL related code. Most of the time you should not be
+## importing this directly, unless you are a test case or want to do something
+## evil. Instead use the exported procs from the `l_main module
+## <l_main.html>`_.
+
 import db_sqlite, times, strutils, l_types, l_log, streams,
   parsecsv, parseutils
 import posix except EOVERFLOW, EIO

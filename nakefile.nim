@@ -3,6 +3,7 @@ import nake, os, times, osproc, htmlparser, xmltree, strtabs, strutils,
 
 const
   test_dir = "tests"
+  logic_dir = "logic"
 
 type
   In_out = tuple[src, dest, options: string]
@@ -83,6 +84,15 @@ proc build_all_rst_files(): seq[In_out] =
 
 
 task "doc", "Generates HTML from the rst files.":
+  # Generate documentation for the nim modules.
+  for nim_file in to_seq(walk_files(logic_dir/"*.nim")):
+    let html_file = nim_file.changeFileExt(".html")
+    if not html_file.needs_refresh(nim_file): continue
+    if not shell("nimrod doc --verbosity:0", nim_file):
+      quit("Could not generate html doc for " & nim_file)
+    else:
+      echo "Generated " & html_file
+
   # Generate html files from the rst docs.
   for f in build_all_rst_files():
     let (rst_file, html_file, options) = f
@@ -115,8 +125,8 @@ task "clean", "Removes temporal files, mainly":
       path.removeFile()
 
 proc compile_logic() =
-  withDir("logic"):
-    echo "Attempting to compile logic"
+  withDir(logic_dir):
+    echo "Attempting to compile code in ", logic_dir
     direShell("nimrod c --verbosity:0 l_main.nim")
 
 task "c", "Compiles the logic module":

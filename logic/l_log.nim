@@ -1,4 +1,7 @@
-## Contains logging related code.
+## `Seohtracker logic <https://github.com/gradha/seohtracker-logic>`_ logging
+## module.
+##
+## Provides a few templates and procs for debug and error logging.
 
 const
   err_prefix = "nim-err: "

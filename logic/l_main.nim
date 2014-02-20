@@ -1,4 +1,5 @@
-## Seohtracker logic main module.
+## `Seohtracker logic <https://github.com/gradha/seohtracker-logic>`_ main
+## module.
 ##
 ## This is the module that clients have to import. It keeps some global
 ## variables around to preserve the state between calls and simplify the API. A
@@ -14,10 +15,14 @@
 ## data: ``add_weight``, ``remove_weight``, ``get_num_weights``, ``find_pos``,
 ## ``modify_weight_date``, ``modify_weight_value``, etc. See all the other
 ## exported procs for information.
+##
+## To browse the constants and other types used here, browse the `l_types
+## module <l_types.html>`_.
 
 import db_sqlite, strutils, times, os, l_db, l_types, parseutils, l_log
 
 export l_types
+export l_log
 
 var
   DB_PATH = ""

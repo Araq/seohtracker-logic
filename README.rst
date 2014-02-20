@@ -2,10 +2,12 @@
 Seohtracker logic
 =================
 
-This is the work in progress module containing the logic for clients like
-`Seohtracker for iOS <https://github.com/gradha/seohtracker-ios>`_ or
-`Seohtracker for Mac <https://github.com/gradha/seohtracker-mac>`_. Come back
-later when there is some meat.
+This is the module containing the logic for clients like `Seohtracker for iOS
+<https://github.com/gradha/seohtracker-ios>`_ or `Seohtracker for Mac
+<https://github.com/gradha/seohtracker-mac>`_. You don't use this directly,
+rather embed it into other clients. For example::
+
+    $ git submodule add https://github.com/gradha/seohtracker-logic.git
 
 
 License
@@ -17,7 +19,11 @@ License
 Documentation
 =============
 
-See the documentation index in the `docindex.rst file <docindex.rst>`_.
+See the documentation index in the `docindex.rst file <docindex.rst>`_. For
+some of the files you need to run ``nake doc`` to generate them, which requires
+you to install `nake <https://github.com/fowlmouth/nake>`_ and check out this
+repository using the ``--recursive`` switch, since it depends on other repos
+for documentation generation.
 
 Changes
 =======
@@ -42,6 +48,6 @@ Feedback
 ========
 
 You can send me feedback through `github's issue tracker
-<https://github.com/gradha/seohtracker-logic/issues>`_. I also take a look from
-time to time to `Nimrod's forums <http://forum.nimrod-code.org>`_ where you can
-talk to other nimrod programmers.
+<https://github.com/gradha/seohtracker-logic/issues>`_. I also take a look at
+`Nimrod's forums <http://forum.nimrod-code.org>`_ where you can talk to other
+nimrod programmers.
