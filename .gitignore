@@ -27,4 +27,6 @@ xcuserdata/
 /resources/html/*.html
 /tests/csv_export/dump_out.csv
 /tests/csv_export/seohyun.sqlite3
+/tests/csv_import/out.csv
+/tests/csv_import/seohyun.sqlite3
 /tests/newer_db_version/seohyun.sqlite3
