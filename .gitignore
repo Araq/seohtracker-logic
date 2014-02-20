@@ -25,3 +25,4 @@ xcuserdata/
 /logic/l_main
 /nakefile
 /resources/html/*.html
+/tests/newer_db_version/seohyun.sqlite3

@@ -17,6 +17,8 @@
 
 import db_sqlite, strutils, times, os, l_db, l_types, parseutils, l_log
 
+export l_types
+
 var
   DB_PATH = ""
   DB_CONN: Tdb_conn ## Stores the database connection, convenience for objc.
