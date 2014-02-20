@@ -1,7 +1,7 @@
 ## Small interactive test of the database.
 ##
-## This imports some *semi public* procs from l_db and l_types.
-import l_main, db_sqlite, l_db, strutils, l_types, times
+## This requires some *semi public* procs from l_db and l_types.
+import l_main, db_sqlite, l_db, strutils, times
 
 proc show_paged_results(conn: Tdb_conn) =
   ## Shows the contents of the database in pages of specified size.
@@ -24,7 +24,7 @@ proc show_paged_results(conn: Tdb_conn) =
 
 proc interactive_test() =
   ## Does some testing with a database based on user input.
-  let conn = open_db("")
+  doAssert open_db("")
   echo "Current database contains " & $get_num_weights() & " rows."
 
   show_paged_results(get_db())

@@ -1,6 +1,9 @@
 import nake, os, times, osproc, htmlparser, xmltree, strtabs, strutils,
   rester, sequtils, packages/docutils/rst, packages/docutils/rstast, posix
 
+const
+  test_dir = "tests"
+
 type
   In_out = tuple[src, dest, options: string]
 
@@ -112,7 +115,18 @@ task "clean", "Removes temporal files, mainly":
       path.removeFile()
 
 task "test", "Compiles and runs some tests":
-  withDir("interactive"):
+  withDir("tests/interactive"):
     echo "Attempting to compile interactive seohyun"
-    direShell("nimrod c seohyun.nim")
-  echo "Finished running tests"
+    direShell("nimrod c --verbosity:0 seohyun.nim")
+
+  echo "Running tests…"
+  var count = 0
+  for path in to_seq(walk_files(test_dir/"*"/"test_*.nim")):
+    let (dir, filename) = path.split_path
+    withDir dir:
+      try:
+        direShell "nimrod c --verbosity:0 -r", filename
+        count += 1
+      except:
+        echo "Exception!"
+  echo "Finished ", count, " tests successfully."

@@ -53,7 +53,7 @@ proc format_weight_with_current_unit*(s: PWeight): string {.raises: [].} =
   result = ret
 
 
-proc format_weight(s: PWeight, add_mass: bool): string {.raises: [].} =
+proc format_weight*(s: PWeight, add_mass: bool): string {.raises: [].} =
   ## Formats the weight for the UI.
   ##
   ## If s is nil, the value zero is returned. If add_mass is true, the string
@@ -79,6 +79,8 @@ proc open_db*(path: string): bool {.raises: [].} =
   ## Pass the directory where you want the database to be opened. The filename
   ## is always a constant you can't change, and will be appended to the
   ## provided `path`.
+  ##
+  ## Returns true if the database was opened and loaded into memory.
   DB_PATH = if path.isNil: "" else: path
   try:
     DB_CONN = open_database(DB_PATH/db_name)
@@ -174,7 +176,7 @@ proc find_pos*(w: PWeight): int {.raises: [].} =
         return
   result = -1
 
-proc modify_weight_date(w: PWeight, value: TTime,
+proc modify_weight_date*(w: PWeight, value: TTime,
     old_pos, new_pos: var int) {.raises: [].} =
   ## Modifies the date of a weight entry.
   ##

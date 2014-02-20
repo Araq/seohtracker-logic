@@ -20,8 +20,6 @@ xcuserdata/
 /build/
 /docindex.html
 /docs/*.html
-/interactive/seohyun
-/interactive/seohyun.sqlite3
 /logic/l_main
 /nakefile
 /resources/html/*.html
@@ -29,4 +27,6 @@ xcuserdata/
 /tests/csv_export/seohyun.sqlite3
 /tests/csv_import/out.csv
 /tests/csv_import/seohyun.sqlite3
+/tests/interactive/seohyun
+/tests/interactive/seohyun.sqlite3
 /tests/newer_db_version/seohyun.sqlite3
