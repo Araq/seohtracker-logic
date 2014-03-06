@@ -1,0 +1,3 @@
+[submodule "external/quicklook-rest-with-nimrod"]
+	path = external/quicklook-rest-with-nimrod
+	url = https://github.com/gradha/quicklook-rest-with-nimrod.git
