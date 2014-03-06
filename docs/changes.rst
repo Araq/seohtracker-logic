@@ -2,7 +2,7 @@
 Seohtracker logic changes log
 =============================
 
-v4, ????-??-??
+v4, 2014-03-06
 --------------
 
 * `Started the project
