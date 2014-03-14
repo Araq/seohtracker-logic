@@ -1,5 +1,9 @@
 #import "user_config.h"
 
+#import "NSString+seohyun.h"
+#import "SHNotifications.h"
+#import "n_global.h"
+#import "n_types.h"
 
 #import "ELHASO.h"
 
@@ -114,7 +118,7 @@ void set_nimrod_metric_use_based_on_user_preferences(void)
 }
 
 /// Configures locale settings, call once during initialisation.
-void configure_metric_locale
+void configure_metric_locale(void)
 {
     // Obtain metric setting from environment.
     // http://stackoverflow.com/a/9997513/172690

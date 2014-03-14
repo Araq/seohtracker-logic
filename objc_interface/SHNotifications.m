@@ -15,7 +15,8 @@ NSString *did_select_sync_tab = @"NSNotificationDidSelectSyncTab";
 NSString *did_update_last_row = @"NSNotificationDidUpdateLastRow";
 NSString *user_metric_prefereces_changed = @"user_metric_preferences_changed";
 
-//##define BUILD_POST(name)
+
+@implementation SHNotifications
 
 + (void)post_decimal_separator_changed
 {
@@ -28,5 +29,7 @@ NSString *user_metric_prefereces_changed = @"user_metric_preferences_changed";
     LASSERT(file.length, @"No file value?");
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center postNotificationName:did_accept_file object:nil
-        userInfo:@{did_accept_file_path:target}];
+        userInfo:@{did_accept_file_path:file}];
 }
+
+@end

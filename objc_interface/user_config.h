@@ -13,4 +13,4 @@ void set_ad_index(int value);
 int get_ad_index(void);
 
 void set_nimrod_metric_use_based_on_user_preferences(void);
-void configure_metric_locale;
+void configure_metric_locale(void);
