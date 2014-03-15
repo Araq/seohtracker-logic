@@ -13,7 +13,10 @@ template glob_rst(basedir: string): expr =
   to_seq(walk_files(basedir/"*.rst"))
 
 let
-  normal_rst_files = concat(glob_rst("."), glob_rst("docs"))
+  normal_rst_files = concat(mapIt(
+    [".", "docs", "objc_interface"],
+    seq[string], glob_rst(it)))
+
 
 proc update_timestamp(path: string) =
   discard utimes(path, nil)

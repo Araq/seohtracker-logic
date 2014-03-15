@@ -11,6 +11,7 @@ Available documentation files for `Seohtracker logic
  * `docs/csv_format.rst <docs/csv_format.rst>`_.
  * `docs/database_format.rst <docs/database_format.rst>`_.
  * `docs/release_steps.rst <docs/release_steps.rst>`_.
+ * `objc_interface/README.rst <objc_interface/README.rst>`_.
 
 The following files are generated HTML documentation, you need to run ``nake
 doc`` at the root of the project to obtain them:
