@@ -13,7 +13,7 @@ NSString *format_date(TWeight *weight)
     return format_nsdate(d);
 }
 
-/** Formats a date to text format.
+/** Formats a date to text format using relative date formatting.
  *
  * Returns the empty string if something went wrong.
  */
@@ -26,6 +26,7 @@ NSString *format_nsdate(NSDate *date)
         formatter = [NSDateFormatter new];
         [formatter setTimeStyle:NSDateFormatterMediumStyle];
         [formatter setDateStyle:NSDateFormatterMediumStyle];
+        formatter.doesRelativeDateFormatting = YES;
     }
     if (!formatter) return @"";
     return [formatter stringFromDate:date];
