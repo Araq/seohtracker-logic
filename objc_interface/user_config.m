@@ -112,7 +112,7 @@ void set_nimrod_metric_use_based_on_user_preferences(void)
 {
     const int pref = user_metric_preference();
     if (pref > 0)
-        specify_metric_use((1 == pref));
+        specify_metric_use((kilograms == (pref - 1)));
     else
         specify_metric_use(system_uses_metric());
 }
