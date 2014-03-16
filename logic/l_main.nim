@@ -94,15 +94,20 @@ proc recalculate_alternating_day_field(start_pos = 0) {.raises: [] .} =
   try:
     var
       pos = start_pos
-      prev_entry = day_date(VALUES[if pos > 0: pos - 1 else: pos])
-      prev_value = alternating_day(VALUES[if pos > 0: pos - 1 else: pos][])
+      prev_entry = if pos > 0: day_date(VALUES[pos - 1]) else: ""
+      prev_value = if pos > 0: VALUES[pos - 1][].alternating_day else: true
+      did_change: bool
     while pos < total:
       let current_entry = VALUES[pos].day_date
       if current_entry != prev_entry:
         prev_entry = current_entry
         prev_value = not prev_value
+        did_change = true
+      else:
+        did_change = false
 
       VALUES[pos][].alternating_day = prev_value
+      VALUES[pos][].changes_day = did_change
       pos += 1
   except EInvalidValue:
     elog "Ignoring date formatting in recalculate_alternating_day_field()"

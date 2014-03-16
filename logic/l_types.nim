@@ -20,7 +20,14 @@ type
     ## May be nil, use the accessor to automatically recalculate it. The date
     ## is calculated using the local time by default. This may be problematic
     ## for unit testing, requiring a future l_db.USE_GMT_TIME hack.
-    Falternating_day: bool ## Stores the cached result of comparing day_date.
+    alternating_day*: bool ## Marks entries as odd/even days for colouring.
+
+    changes_day*: bool ## \
+    ## Set to true if the immediate previous entry is for a different day.
+    ##
+    ## A group of three entries with the same day will have the same vale for
+    ## `alternating_day`, but only the first will have true in the
+    ## `changes_day` field.
 
   PWeight* {.exportc.} = ref TWeight
 
@@ -190,13 +197,3 @@ proc day_date*(w: PWeight): string =
   ## Returns the empty string if the weight pointer is nil.
   if w.isNil: return ""
   return day_date(w[])
-
-
-proc `alternating_day=`*(w: var TWeight; value: bool) {.inline, raises: [].} =
-  ## Setter for the Falternating_day field.
-  w.Falternating_day = value
-
-
-proc alternating_day*(w: TWeight): bool {.raises: [].} =
-  ## Getter for the Falternating_day attribute.
-  result = w.Falternating_day
