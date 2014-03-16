@@ -9,10 +9,19 @@ import times, l_log, strutils
 
 type
   TWeight* {.exportc.} = object of TObject
+    # Fields serialized to the database.
     Fid: int ## Internal db identifier of the object.
     Fdate: TTime ## When was the object recorded.
     Fweight: float ## Weight, according to type.
     Ftyp: Weight_type ## Type of the weight.
+
+    Fday_date: string ## date field in YYYYMMDD format for day comparisons. \
+    ##
+    ## May be nil, use the accessor to automatically recalculate it. The date
+    ## is calculated using the local time by default. This may be problematic
+    ## for unit testing, requiring a future l_db.USE_GMT_TIME hack.
+    Falternating_day: bool ## Stores the cached result of comparing day_date.
+
   PWeight* {.exportc.} = ref TWeight
 
   Weight_type* = enum kilograms = 0, pounds = 1 ## \
@@ -79,10 +88,13 @@ proc id*(s: TWeight): int =
 
 proc `date=`*(s: var TWeight; value: TTime) =
   ## Setter for the date attribute.
+  ##
+  ## Also cleans the day_date field by forcing it to nil.
   s.Fdate = value
+  s.Fday_date = nil
 
 proc date*(s: PWeight): TTime {.raises:[].} =
-  ## Getter for the date attribute.
+  ## Getter for the Fdate attribute.
   ##
   ## Returns zero if the weight is invalid.
   if not s.isNil:
@@ -123,6 +135,10 @@ proc format_iso*(info: TTimeInfo): string {.raises: [EInvalidValue].} =
   result = info.format("yyyy-MM-dd:HH-mm-ss")
 
 
+proc safe_str*(s: string): string {.raises: [].} =
+  ## Returns the string or "(nil)" if the variable is not initialized.
+  result = if s.isNil: "(nil)" else: s
+
 proc `$`*(x: PWeight): string {.raises: [].} =
   ## Debugging/logging helper of weights.
   if x.isNil:
@@ -136,8 +152,8 @@ proc `$`*(x: PWeight): string {.raises: [].} =
 
   # Build debug string.
   result = "PWeight {id:" & $(x[].id) & ", weight:" &
-    formatFloat(x.weight, ffDecimal, 4) & ", typ:" & x[].typ_str &
-    ", date:" & d & "}"
+    formatFloat(x.Fweight, ffDecimal, 4) & ", typ:" & x[].typ_str &
+    ", date:" & d & ", day_date:" & safe_str(x[].Fday_date) & "}"
 
 
 proc `==`(x, y: PWeight): bool =
@@ -158,3 +174,19 @@ proc exists_value*(s: seq[PWeight], x: PWeight): bool =
     if y == x:
       result = true
       return
+
+proc day_date*(w: var TWeight): string {.raises: [EInvalidValue].} =
+  ## Returns the day_date field of PWeight, which may need recalculation.
+  if w.Fday_date.isNil:
+    let info = w.Fdate.get_local_time
+    w.Fday_date = info.format("yyyyMMdd")
+  assert w.Fday_date.len > 0
+  return w.Fday_date
+
+
+proc day_date*(w: PWeight): string =
+  ## Returns the day_date field of PWeight, which may need recalculation.
+  ##
+  ## Returns the empty string if the weight pointer is nil.
+  if w.isNil: return ""
+  return day_date(w[])
