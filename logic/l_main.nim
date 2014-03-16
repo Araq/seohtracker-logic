@@ -78,6 +78,36 @@ proc format_weight*(s: PWeight, add_mass: bool): string {.raises: [].} =
   result = ret
 
 
+proc recalculate_alternating_day_field(start_pos = 0) {.raises: [] .} =
+  ## Recalculates the alternating_day field for entries in  the VALUES array.
+  ##
+  ## Pass the starting position in the array you want to start recalculating
+  ## from. The value depends sequentially on previous entries, so if you are
+  ## changing entry X, previous entries won't change and you speed up the
+  ## calculation for long arrays.
+  ##
+  ## This feature is not very important for the proper working of the code, so
+  ## if there is any serious error it only asserts it in debug builds.
+  assert start_pos >= 0
+  let total = VALUES.len
+  if start_pos >= total or start_pos < 0: return
+  try:
+    var
+      pos = start_pos
+      prev_entry = day_date(VALUES[if pos > 0: pos - 1 else: pos])
+      prev_value = alternating_day(VALUES[if pos > 0: pos - 1 else: pos][])
+    while pos < total:
+      let current_entry = VALUES[pos].day_date
+      if current_entry != prev_entry:
+        prev_entry = current_entry
+        prev_value = not prev_value
+
+      VALUES[pos][].alternating_day = prev_value
+      pos += 1
+  except EInvalidValue:
+    elog "Ignoring date formatting in recalculate_alternating_day_field()"
+
+
 proc open_db*(path: string): bool {.raises: [].} =
   ## Opens the database.
   ##
@@ -95,6 +125,7 @@ proc open_db*(path: string): bool {.raises: [].} =
     exlog "Could not open database at '", DB_PATH, "'"
     return
   VALUES = DB_CONN.get_weights_page(-1, high(int))
+  recalculate_alternating_day_field()
 
 
 proc close_db*() {.raises: [].} =
@@ -138,6 +169,7 @@ proc add_weight*(weight: float): int {.raises: [].} =
       assert (not w.isNil)
       VALUES.insert(w, pos)
       result = pos
+      recalculate_alternating_day_field(pos)
   except EDb:
     exlog "Could not add weight ", weight
 
@@ -157,6 +189,7 @@ proc remove_weight*(weight: PWeight): int {.discardable, raises: [].} =
       if VALUES[f][].id == weight[].id:
         VALUES.delete(f)
         result = f
+        recalculate_alternating_day_field(f)
         return
       else:
         f += 1
@@ -203,6 +236,7 @@ proc modify_weight_date*(w: PWeight, value: TTime,
     w[].date = value
     assert old_weight.date == value
     VALUES.insert(old_weight, new_pos)
+    recalculate_alternating_day_field(min(old_pos, new_pos))
   else:
     new_pos = -1
     elog "Could not update weight date ", w[].id
@@ -368,6 +402,7 @@ proc import_csv_into_db*(csv_filename: string, replace: bool):
     result = DB_CONN.import_csv_into_db(csv_values, replace)
     # Refresh globals.
     VALUES = DB_CONN.get_weights_page(-1, high(int))
+    recalculate_alternating_day_field()
   else:
     dlog "Didn't do any DB operation, all CSV imported values already there."
     result = true

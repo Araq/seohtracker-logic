@@ -190,3 +190,13 @@ proc day_date*(w: PWeight): string =
   ## Returns the empty string if the weight pointer is nil.
   if w.isNil: return ""
   return day_date(w[])
+
+
+proc `alternating_day=`*(w: var TWeight; value: bool) {.inline, raises: [].} =
+  ## Setter for the Falternating_day field.
+  w.Falternating_day = value
+
+
+proc alternating_day*(w: TWeight): bool {.raises: [].} =
+  ## Getter for the Falternating_day attribute.
+  result = w.Falternating_day
