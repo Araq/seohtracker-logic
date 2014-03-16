@@ -102,3 +102,7 @@ proc release_weight(w: var PWeight) {.exportc, raises:[].} =
 
 proc date(s: PWeight): TTime {.exportc, raises:[].} =
   result = l_types.date(s)
+
+proc alternating_day(w: PWeight): bool {.exportc, raises:[].} =
+  if w.isNil: result = false
+  else: result = w[].alternating_day
