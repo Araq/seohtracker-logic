@@ -38,7 +38,7 @@ NSString *format_nsdate(NSDate *date)
  * (and further) entries of the same day are displayed in a shadowed color.
  */
 NSAttributedString *format_shadowed_date(TWeight *weight,
-    UIFont *font, UIColor *normal, UIColor *shadowed)
+    id font, id normal_color, id shadowed_color)
 {
     assert(weight && @"Bad param");
     NSDate *d = [NSDate dateWithTimeIntervalSince1970:date(weight)];
@@ -68,9 +68,9 @@ NSAttributedString *format_shadowed_date(TWeight *weight,
 
     // By default make all the text shadowed.
     [text addAttribute:NSForegroundColorAttributeName
-        value:shadowed range:(NSRange){0, text.length}];
+        value:shadowed_color range:(NSRange){0, text.length}];
     // Then modify the part we want to be seen.
     [text addAttribute:NSForegroundColorAttributeName
-        value:normal range:r];
+        value:normal_color range:r];
     return text;
 }
