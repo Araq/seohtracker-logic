@@ -94,11 +94,19 @@ proc import_csv_into_db(csv_filename: cstring, replace: bool):
   result = l_main.import_csv_into_db(p, replace)
 
 # Exports for the l_types module.
-proc retain_weight(w: PWeight) {.exportc, raises:[].} =
+proc retain_weight(w: PWeight) {.exportc, raises: [].} =
   l_types.retain_weight(w)
 
-proc release_weight(w: var PWeight) {.exportc, raises:[].} =
+proc release_weight(w: var PWeight) {.exportc, raises: [].} =
   l_types.release_weight(w)
 
-proc date(s: PWeight): TTime {.exportc, raises:[].} =
+proc date(s: PWeight): TTime {.exportc, raises: [].} =
   result = l_types.date(s)
+
+proc alternating_day(w: PWeight): bool {.exportc, raises: [].} =
+  if w.isNil: result = false
+  else: result = w[].alternating_day
+
+proc changes_day(w: PWeight): bool {.exportc, raises: [].} =
+  if w.isNil: result = false
+  else: result = w[].changes_day

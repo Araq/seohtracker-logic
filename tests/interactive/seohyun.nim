@@ -15,6 +15,8 @@ proc show_paged_results(conn: Tdb_conn) =
   while rows.len > 0:
     echo "page " & $page
     for row in rows:
+      # Force calculation of day date.
+      discard(row.day_date)
       echo "row $1, date $2, weight $3" % [$row[].id, $row.date,
         row.weight.format_float(ffDecimal, num_decimals)]
       last_row = row[].id

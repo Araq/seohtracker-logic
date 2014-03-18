@@ -2,13 +2,15 @@
 Seohtracker logic changes log
 =============================
 
-v5, ????-??-??
+v4.1, ????-??-??
 --------------
 
 * `Added generic objc interface
   <https://github.com/gradha/seohtracker-logic/issues/4>`_.
 * `Made objc interface format dates using relative format
   <https://github.com/gradha/seohtracker-logic/issues/7>`_.
+* `Added alternating bool to loaded entries
+  <https://github.com/gradha/seohtracker-logic/issues/9>`_.
 
 v4, 2014-03-06
 --------------

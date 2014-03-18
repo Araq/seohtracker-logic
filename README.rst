@@ -28,8 +28,8 @@ for documentation generation.
 Changes
 =======
 
-This is development version v5. For a list of changes see the `docs/changes.rst
-file <docs/changes.rst>`_.
+This is development version v4.1. For a list of changes see the
+`docs/changes.rst file <docs/changes.rst>`_.
 
 
 Git branches
