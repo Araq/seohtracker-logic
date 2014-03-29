@@ -31,4 +31,5 @@ xcuserdata/
 /tests/csv_import/seohyun.sqlite3
 /tests/interactive/seohyun
 /tests/interactive/seohyun.sqlite3
+/tests/memento/dummy.tmp
 /tests/newer_db_version/seohyun.sqlite3
