@@ -1,67 +1,13 @@
-import nake, os, times, osproc, htmlparser, xmltree, strtabs, strutils,
-  rester, sequtils, packages/docutils/rst, packages/docutils/rstast, posix
+import supernake
 
 const
   test_dir = "tests"
   logic_dir = "logic"
 
-type
-  In_out = tuple[src, dest, options: string]
-
-template glob_rst(basedir: string): expr =
-  ## Shortcut to simplify getting lists of files.
-  to_seq(walk_files(basedir/"*.rst"))
-
 let
   normal_rst_files = concat(mapIt(
     [".", "docs", "objc_interface"],
     seq[string], glob_rst(it)))
-
-
-proc update_timestamp(path: string) =
-  discard utimes(path, nil)
-
-proc rst2html(src: string, out_path = ""): bool =
-  ## Converts the filename `src` into `out_path` or src with extension changed.
-  let output = safe_rst_file_to_html(src)
-  if output.len > 0:
-    let dest = if out_path.len > 0: out_path else: src.changeFileExt("html")
-    dest.writeFile(output)
-    result = true
-
-proc change_rst_links_to_html(html_file: string) =
-  ## Opens the file, iterates hrefs and changes them to .html if they are .rst.
-  let html = loadHTML(html_file)
-  var DID_CHANGE: bool
-
-  for a in html.findAll("a"):
-    let href = a.attrs["href"]
-    if not href.isNil:
-      let (dir, filename, ext) = splitFile(href)
-      if cmpIgnoreCase(ext, ".rst") == 0:
-        a.attrs["href"] = dir / filename & ".html"
-        DID_CHANGE = true
-
-  if DID_CHANGE:
-    writeFile(html_file, $html)
-
-proc needs_refresh(target: string, src: varargs[string]): bool =
-  # Returns true if any of `src` has an older timestamp than `target`.
-  assert len(src) > 0, "Pass some parameters to check for"
-  var targetTime: float
-  try:
-    targetTime = toSeconds(getLastModificationTime(target))
-  except EOS:
-    return true
-
-  for s in src:
-    let srcTime = toSeconds(getLastModificationTime(s))
-    if srcTime > targetTime:
-      return true
-
-proc needs_refresh(target: In_out): bool =
-  ## Wrapper around the normal needs_refresh for In_out types.
-  result = target.dest.needs_refresh(target.src)
 
 
 iterator all_rst_files(): In_out =
@@ -91,34 +37,19 @@ task "doc", "Generates HTML from the rst files.":
   for nim_file in to_seq(walk_files(logic_dir/"*.nim")):
     let html_file = nim_file.changeFileExt(".html")
     if not html_file.needs_refresh(nim_file): continue
-    if not shell("nimrod doc --verbosity:0", nim_file):
-      quit("Could not generate html doc for " & nim_file)
-    else:
-      echo "Generated " & html_file
+    nim_file.nimrod_doc(html_file)
 
   # Generate html files from the rst docs.
   for f in build_all_rst_files():
-    let (rst_file, html_file, options) = f
-    if not html_file.needs_refresh(rst_file): continue
-    discard change_rst_options(options)
-    if not rst2html(rst_file, html_file):
-      quit("Could not generate html doc for " & rst_file)
-    else:
-      if options.isNil:
-        change_rst_links_to_html(html_file)
-      #doc_build_dir.update_timestamp
-      echo rst_file & " -> " & html_file
+    if f.needs_refresh:
+      rst2html(f)
 
   echo "All docs generated"
 
 task "check_doc", "Validates rst format for a subset of documentation":
   for f in build_all_rst_files():
-    let (rst_file, html_file, options) = f
-    echo "Testing ", rst_file
-    let (output, exit) = execCmdEx("rst2html.py " & rst_file & " /dev/null")
-    if output.len > 0 or exit != 0:
-      echo "Failed python processing of " & rst_file
-      echo output
+    test_rst(f.src)
+
 
 task "clean", "Removes temporal files, mainly":
   for path in walkDirRec("."):
