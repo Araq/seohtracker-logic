@@ -8,12 +8,14 @@ import packages/docutils/rst, packages/docutils/rstast, nake, sequtils, posix,
 export rst, rstast, nake, sequtils,
   strutils, parseopt, tables, os, rdstdin, times, osproc, rester
 
-import htmlparser, xmltree, strtabs
+import htmlparser, xmltree, strtabs, parseutils
 
 type
   In_out* = tuple[src, dest, options: string]
     ## The tuple only contains file paths.
 
+const
+  changelog_define = "EMBEDDED_CHANGELOG_VERSION"
 
 var
   CONFIGS = newStringTable(modeCaseInsensitive)
@@ -121,3 +123,48 @@ proc rst2html*(file: In_out) =
     if file.options.isNil:
       change_rst_links_to_html(file.dest)
     echo file.src & " -> " & file.dest
+
+
+proc find_first_version_header*(node: PRstNode): float =
+  ## Returns greater than zero if a header node with version was found.
+  if node.kind == rnHeadline:
+    var headline = ""
+    for son in node.sons:
+      if (not son.isNil) and (not son.text.isNil):
+        headline.add(son.text)
+
+    if headline.len > 0 and headline[0] == 'v':
+      # Looks like the proper headline, parse it!
+      if parseFloat(headline, result, start = 1) > 0:
+        return
+      else:
+        result = 0
+
+  # Keep traversing the hierarchy.
+  for son in node.sons:
+    if not son.isNil():
+      result = find_first_version_header(son)
+      if result > 0: return
+
+
+proc generate_version_constant*(target: In_out) =
+  ## Scans the src rst file and generates an output C header with a version.
+  ##
+  ## The version is extracted as the first "vDDD" value from section titles.
+  let text = target.src.readFile
+  var
+    hasToc = false
+    ast = rstParse(text, target.src, 0, 0, hasToc, {})
+  let
+    version_float = ast.find_first_version_header
+    version_str = version_float.formatFloat(ffDecimal, precision = 1)
+
+  target.dest.writeFile(format("""#ifndef $1_H
+#define $1_H
+
+#define $1 ($2f)
+#define $1_STR @"$2"
+
+#endif // $1_H
+""", changelog_define, version_str))
+  echo "Updated ", target.dest, " with ", changelog_define, " ", version_str
