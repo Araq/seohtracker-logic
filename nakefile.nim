@@ -52,11 +52,10 @@ task "check_doc", "Validates rst format for a subset of documentation":
 
 
 task "clean", "Removes temporal files, mainly":
-  for path in walkDirRec("."):
-    let ext = splitFile(path).ext
-    if ext == ".html":
-      echo "Removing ", path
-      path.removeFile()
+  for f in build_all_rst_files():
+    if f.dest.exists_file:
+      echo "Removing ", f.dest
+      f.dest.remove_file
 
 proc compile_logic() =
   withDir(logic_dir):

@@ -12,6 +12,13 @@ import htmlparser, xmltree, strtabs
 
 type
   In_out* = tuple[src, dest, options: string]
+    ## The tuple only contains file paths.
+
+
+var
+  CONFIGS = newStringTable(modeCaseInsensitive)
+    ## Stores previously read configuration files.
+
 
 template glob_rst*(basedir: string): expr =
   ## Shortcut to simplify getting lists of files.
@@ -21,6 +28,16 @@ template glob_rst*(basedir: string): expr =
 proc update_timestamp*(path: string) =
   ## Wrapper over utimes from posix,
   discard utimes(path, nil)
+
+
+proc load_config(path: string): string =
+  ## Loads the config at path and returns it.
+  ##
+  ## Uses the CONFIGS variable to cache contents. Returns nil if path is nil.
+  if path.isNil: return
+  if CONFIGS.hasKey(path): return CONFIGS[path]
+  CONFIGS[path] = path.readFile
+  result = CONFIGS[path]
 
 
 proc rst2html*(src: string, out_path = ""): bool =
@@ -97,7 +114,7 @@ proc rst2html*(file: In_out) =
   if not file.needs_refresh:
     return
 
-  discard change_rst_options(file.options)
+  discard change_rst_options(file.options.load_config)
   if not rst2html(file.src, file.dest):
     quit("Could not generate html doc for " & file.src)
   else:
