@@ -13,6 +13,8 @@ v4.1, ????-??-??
   <https://github.com/gradha/seohtracker-logic/issues/9>`_.
 * `Marked get_weight_string() as returning not nil
   <https://github.com/gradha/seohtracker-logic/issues/6>`_.
+* `Factored common code from client nakefiles
+  <https://github.com/gradha/seohtracker-logic/issues/8>`_.
 
 v4, 2014-03-06
 --------------
