@@ -115,7 +115,7 @@ proc typ*(s: TWeight): Weight_type =
   ## Getter for the type of weight.
   return s.Ftyp
 
-proc short*(x: Weight_type): string =
+proc short*(x: Weight_type): string not nil =
   case x:
   of kilograms: result = kg_str
   of pounds: result = lb_str
