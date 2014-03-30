@@ -11,6 +11,8 @@ v4.1, ????-??-??
   <https://github.com/gradha/seohtracker-logic/issues/7>`_.
 * `Added alternating bool to loaded entries
   <https://github.com/gradha/seohtracker-logic/issues/9>`_.
+* `Marked get_weight_string() as returning not nil
+  <https://github.com/gradha/seohtracker-logic/issues/6>`_.
 
 v4, 2014-03-06
 --------------
