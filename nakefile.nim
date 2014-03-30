@@ -82,3 +82,4 @@ task "test", "Compiles stuff and runs some tests":
       except:
         echo "Exception!"
   echo "Finished ", count, " tests successfully."
+  assert count == 3, "Bad test count?"
