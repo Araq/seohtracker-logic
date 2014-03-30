@@ -33,7 +33,7 @@ var
   INVALID_CHARS = AllChars - ({nim_decimal_separator} + Digits)
 
 
-proc get_weight_string*(): string {.raises: [].} =
+proc get_weight_string*(): string not nil {.raises: [].} =
   ## Allows C code know the string for the current WEIGHT_DEFAULT setting.
   result = short(WEIGHT_DEFAULT)
 
