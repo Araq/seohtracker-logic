@@ -53,7 +53,7 @@ task "check_doc", "Validates rst format for a subset of documentation":
 
 task "clean", "Removes temporal files, mainly":
   for path in walkDirRec("."):
-    let (dir, name, ext) = splitFile(path)
+    let ext = splitFile(path).ext
     if ext == ".html":
       echo "Removing ", path
       path.removeFile()
