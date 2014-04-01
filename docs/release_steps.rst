@@ -4,7 +4,7 @@ What to do for a new public release?
 
 * Create new milestone with version number.
 * Create new dummy issue `Release versionname` and assign to that milestone.
-* git flow release start versionname (versionname without v).
+* ``git flow release start versionname`` (versionname without v).
 * Update version numbers:
 
   * Modify `README.rst <../README.rst>`_ (s/development/stable/).
