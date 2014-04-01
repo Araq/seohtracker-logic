@@ -2,8 +2,8 @@
 Seohtracker logic changes log
 =============================
 
-v4.1, ????-??-??
-----------------
+v5, 2014-04-01
+--------------
 
 * `Added generic objc interface
   <https://github.com/gradha/seohtracker-logic/issues/4>`_.
