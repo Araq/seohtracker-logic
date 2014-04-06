@@ -5,7 +5,8 @@ Seohtracker logic changes log
 v5.1, ????-??-??
 ----------------
 
-* Nothing yet.
+* `Improved objc date formatting code
+  <https://github.com/gradha/seohtracker-logic/issues/11>`_.
 
 v5, 2014-04-01
 --------------
