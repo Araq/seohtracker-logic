@@ -8,6 +8,7 @@
 static NSDateFormatter *relative_normal_formatter_;
 static NSDateFormatter *relative_shadow_formatter_;
 static dispatch_queue_t q;
+static NSDate *year_limit_, *month_limit_;
 
 
 /** Initializes the formatters along with the queue to access them.
@@ -18,8 +19,12 @@ static void init_formatters(void)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+            // Creates the internal queue.
             q = dispatch_queue_create("formatters.m", DISPATCH_QUEUE_SERIAL);
             assert(q);
+
+            // Updates stuff.
+            update_formatter_limits_on_significant_time_change();
 
             // Normal relative dates.
             relative_normal_formatter_ = [NSDateFormatter new];
@@ -37,7 +42,6 @@ static void init_formatters(void)
             [relative_shadow_formatter_
                 setDateStyle:NSDateFormatterNoStyle];
             relative_shadow_formatter_.doesRelativeDateFormatting = YES;
-
         });
 }
 
@@ -110,11 +114,36 @@ NSAttributedString *format_shadowed_date(TWeight *weight,
 
 /** Call this when the time changes significantly.
  *
- * This could be when the user changes date, or the current time naturally
- * switches from one day to another. The function will refresh the internal
- * time variables used to keep track of specific date limits used for
- * formatting.
+ * Using the current time as bases figures out what time limits have to be used
+ * for dates earlier than the current year, dates earlier than the current
+ * month, and nearest dates.
+ *
+ * Since this is based on the current time, you have to call this whenever the
+ * date changes from day to day (or more). The function will update the
+ * internal limits used to figure out which date formatter to pick.
  */
-void update_formatters_on_significant_time_change(void)
+void update_formatter_limits_on_significant_time_change(void)
 {
+    if (!q)
+        return;
+
+    dispatch_sync(q, ^{
+            NSCalendar *cal = [NSCalendar autoupdatingCurrentCalendar];
+            const unsigned unit_flags = NSYearCalendarUnit |
+                NSMonthCalendarUnit | NSDayCalendarUnit |
+                NSHourCalendarUnit | NSMinuteCalendarUnit |
+                NSSecondCalendarUnit;
+            NSDateComponents *comps = [cal components:unit_flags
+                fromDate:[NSDate date]];
+
+            [comps setHour:1];
+            [comps setMinute:0];
+            [comps setSecond:1];
+            [comps setDay:1];
+            month_limit_ = [cal dateFromComponents:comps];
+            [comps setMonth:1];
+            year_limit_ = [cal dateFromComponents:comps];
+            DLOG(@"Formatter month limit %@, year limit %@",
+                month_limit_, year_limit_);
+        });
 }
