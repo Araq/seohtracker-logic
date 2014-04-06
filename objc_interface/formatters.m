@@ -5,9 +5,13 @@
 #import <assert.h>
 
 
-static NSDateFormatter *relative_normal_formatter_;
-static NSDateFormatter *relative_shadow_formatter_;
+#define NUM_FORMATTERS_ 3
+
+// Array of three positions, year date, month date, nearest date.
+static NSDateFormatter *relative_normal_formatter_[NUM_FORMATTERS_];
+static NSDateFormatter *relative_shadow_formatter_[NUM_FORMATTERS_];
 static dispatch_queue_t q;
+// Stores the limit to differentiate the date format.
 static NSDate *year_limit_, *month_limit_;
 
 
@@ -26,22 +30,59 @@ static void init_formatters(void)
             // Updates stuff.
             update_formatter_limits_on_significant_time_change();
 
-            // Normal relative dates.
-            relative_normal_formatter_ = [NSDateFormatter new];
-            [relative_normal_formatter_
-                setTimeStyle:NSDateFormatterMediumStyle];
-            [relative_normal_formatter_
-                setDateStyle:NSDateFormatterMediumStyle];
-            relative_normal_formatter_.doesRelativeDateFormatting = YES;
-            assert(relative_normal_formatter_);
+            NSDateFormatter *f = nil;
+            // Normal year long relative dates.
+            f = [NSDateFormatter new];
+            [f setTimeStyle:NSDateFormatterMediumStyle];
+            [f setDateStyle:NSDateFormatterMediumStyle];
+            f.doesRelativeDateFormatting = NO;
+            assert(f);
+            relative_normal_formatter_[0] = f;
 
-            // Used for the part of the time we want to not shadow.
-            relative_shadow_formatter_ = [NSDateFormatter new];
-            [relative_shadow_formatter_
-                setTimeStyle:NSDateFormatterMediumStyle];
-            [relative_shadow_formatter_
-                setDateStyle:NSDateFormatterNoStyle];
-            relative_shadow_formatter_.doesRelativeDateFormatting = YES;
+            // Shadow year long relative dates.
+            f = [NSDateFormatter new];
+            [f setTimeStyle:NSDateFormatterMediumStyle];
+            [f setDateStyle:NSDateFormatterNoStyle];
+            f.doesRelativeDateFormatting = NO;
+            assert(f);
+            relative_shadow_formatter_[0] = f;
+
+#define _F(X) [NSDateFormatter \
+    dateFormatFromTemplate:X options:0 \
+    locale:[NSLocale autoupdatingCurrentLocale]]
+
+            // Figure out a locale date format without year.
+            f = [NSDateFormatter new];
+            [f setDateFormat:_F(@"MMMddjjmmssa")];
+            f.doesRelativeDateFormatting = NO;
+            assert(f);
+            relative_normal_formatter_[1] = f;
+
+            f = [NSDateFormatter new];
+            [f setDateFormat:_F(@"jjmmssa")];
+            f.doesRelativeDateFormatting = NO;
+            assert(f);
+            relative_shadow_formatter_[1] = f;
+
+            // Figure out a locale date format without year or month, only day.
+            f = [NSDateFormatter new];
+            [f setDateFormat:_F(@"ddjjmmssa")];
+            f.doesRelativeDateFormatting = NO;
+            assert(f);
+            relative_normal_formatter_[2] = f;
+
+            f = [NSDateFormatter new];
+            [f setDateFormat:_F(@"jjmmssa")];
+            f.doesRelativeDateFormatting = NO;
+            assert(f);
+            relative_shadow_formatter_[2] = f;
+#undef _F
+
+            // Debug format sets for the dates.
+            for (int i = 0; i < NUM_FORMATTERS_; i++) {
+                f = relative_normal_formatter_[i];
+                DLOG(@"Format date %d is '%@'", i, [f dateFormat]);
+            }
         });
 }
 
@@ -66,7 +107,7 @@ NSString *format_relative_nsdate(NSDate *date)
     if (!date) return @"";
     NSString __block *ret = nil;
     dispatch_sync(q, ^{
-            ret = [relative_normal_formatter_ stringFromDate:date];
+            ret = [relative_normal_formatter_[0] stringFromDate:date];
         });
 
     assert(ret);
@@ -93,7 +134,7 @@ NSAttributedString *format_shadowed_date(TWeight *weight,
     // Find the range of the text we will keep in normal color.
     NSString __block *part = nil;
     dispatch_sync(q, ^{
-            part = [relative_shadow_formatter_ stringFromDate:d];
+            part = [relative_shadow_formatter_[0] stringFromDate:d];
         });
     assert(part);
     const NSRange r = [normal_text
