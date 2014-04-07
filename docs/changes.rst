@@ -2,7 +2,7 @@
 Seohtracker logic changes log
 =============================
 
-v5.1, ????-??-??
+v5.2, 2014-04-07
 ----------------
 
 * `Improved objc date formatting code
