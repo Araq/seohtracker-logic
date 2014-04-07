@@ -25,7 +25,6 @@ static void generate_formatters(void)
     f = [NSDateFormatter new];
     [f setTimeStyle:NSDateFormatterMediumStyle];
     [f setDateStyle:NSDateFormatterMediumStyle];
-    f.doesRelativeDateFormatting = NO;
     assert(f);
     normal_formatter_[0] = f;
 
@@ -33,7 +32,6 @@ static void generate_formatters(void)
     f = [NSDateFormatter new];
     [f setTimeStyle:NSDateFormatterMediumStyle];
     [f setDateStyle:NSDateFormatterNoStyle];
-    f.doesRelativeDateFormatting = NO;
     assert(f);
     shadow_formatter_[0] = f;
 
@@ -44,26 +42,22 @@ locale:[NSLocale autoupdatingCurrentLocale]]
     // Figure out a locale date format without year.
     f = [NSDateFormatter new];
     [f setDateFormat:_F(@"eeeMMMd,jjmmssa")];
-    f.doesRelativeDateFormatting = NO;
     assert(f);
     normal_formatter_[1] = f;
 
     f = [NSDateFormatter new];
     [f setDateFormat:_F(@"jjmmssa")];
-    f.doesRelativeDateFormatting = NO;
     assert(f);
     shadow_formatter_[1] = f;
 
     // Figure out a locale date format without year or month, only day.
     f = [NSDateFormatter new];
     [f setDateFormat:_F(@"eeeed,jjmmssa")];
-    f.doesRelativeDateFormatting = NO;
     assert(f);
     normal_formatter_[2] = f;
 
     f = [NSDateFormatter new];
     [f setDateFormat:_F(@"jjmmssa")];
-    f.doesRelativeDateFormatting = NO;
     assert(f);
     shadow_formatter_[2] = f;
 
