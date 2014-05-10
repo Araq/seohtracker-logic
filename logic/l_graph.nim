@@ -13,122 +13,120 @@
 import math, strutils, l_log
 
 const
-  defaultMaxTicks* = 10
+  default_max_tricks* = 10
 
-type NiceScale* = object ## \
+type Nice_scale* {.exportc.} = object ## \
   ## Stores the input and output parameters of the scale computation.
   ##
-  ## You need to initialize a NiceScale object and then call the ``calculate``
+  ## You need to initialize a Nice_scale object and then call the ``calculate``
   ## proc to contain meaningful output values. Call ``calculate`` again if you
   ## modify the input parameters.
-  minPoint*: float ## Input, the minimum point to be displayed by the graph.
-  maxPoint*: float ## Input, the maximum point to be displayed by the graph.
-  maxTicks*: int ## Input, maximum number of ticks in the axis.
-  tickSpacing*: float ## Output, distance between ticks on the ideal axis.
-  niceMin*: float ## Output, optimal minimum value to start the axis.
-  niceMax*: float ## Output, optimal maximum value to end the axis.
+  min_point*: float ## Input, the minimum point to be displayed by the graph.
+  max_point*: float ## Input, the maximum point to be displayed by the graph.
+  max_ticks*: int ## Input, maximum number of ticks in the axis.
+  tick_spacing*: float ## Output, distance between ticks on the ideal axis.
+  nice_min*: float ## Output, optimal minimum value to start the axis.
+  nice_max*: float ## Output, optimal maximum value to end the axis.
 
 proc ff(x: float): string =
   ## Wrapper around strutils.formatFloat for less typing.
   result = x.formatFloat(ffDecimal, 3)
 
-proc `$`*(x: NiceScale): string =
-  ## Debug formatter of the NiceScale structure.
-  result = "Input minPoint: " & x.minPoint.ff &
-    "\nInput maxPoint: " & x.maxPoint.ff &
-    "\nInput maxTicks: " & $x.maxTicks &
-    "\nOutput niceMin: " & x.niceMin.ff &
-    "\nOutput niceMax: " & x.niceMax.ff &
-    "\nOutput tickSpacing: " & x.tickSpacing.ff &
+proc `$`*(x: Nice_scale): string =
+  ## Debug formatter of the Nice_scale structure.
+  result = "Input min_point: " & x.min_point.ff &
+    "\nInput max_point: " & x.max_point.ff &
+    "\nInput max_ticks: " & $x.max_ticks &
+    "\nOutput nice_min: " & x.nice_min.ff &
+    "\nOutput nice_max: " & x.nice_max.ff &
+    "\nOutput tick_spacing: " & x.tick_spacing.ff &
     "\n"
 
-proc calculate*(x: var NiceScale)
+proc calculate*(X: var Nice_scale)
 
-proc init*(x: var NiceScale; minPoint, maxPoint: float;
-    maxTicks = defaultMaxTicks) =
-  ## Initializes a NiceScale variable.
+proc init*(X: var Nice_scale; min_point, max_point: float;
+    max_ticks = default_max_tricks) =
+  ## Initializes a Nice_scale variable.
   ##
   ## Pass the minimum and maximum values of the axis and the number of ticks.
   ## The initialisation will automatically call ``calculate()`` for you so you
   ## can already grab the output values.
-  x.minPoint = minPoint
-  x.maxPoint = maxPoint
-  x.maxTicks = defaultMaxTicks
-  x.calculate
+  X.min_point = min_point
+  X.max_point = max_point
+  X.max_ticks = default_max_tricks
+  X.calculate
 
-proc initScale*(minPoint, maxPoint: float;
-    maxTicks = defaultMaxTicks): NiceScale =
+proc init_nice_scale*(min_point, max_point: float;
+    max_ticks = default_max_tricks): Nice_scale =
   ## Shortcut for initialisations in variable blocks.
-  result.init(minPoint, maxPoint, maxTicks)
+  result.init(min_point, max_point, max_ticks)
 
-proc niceNum(scaleRange: float; doRound: bool): float =
-  ## Calculates a nice number for `scaleRange`.
+proc nice_num(scale_range: float; doRound: bool): float =
+  ## Calculates a nice number for `scale_range`.
   ##
-  ## Returns a *nice* number approximately equal to `scaleRange`. Rounds the
+  ## Returns a *nice* number approximately equal to `scale_range`. Rounds the
   ## number if ``doRound = true``. Takes the ceiling if ``doRound = false``.
-  var
-    exponent: float ## Exponent of scaleRange.
-    fraction: float ## Fractional part of scaleRange.
-    niceFraction: float ## Nice, rounded fraction.
+  let
+    exponent = floor(log10(scale_range)) ## Exponent of scale_range.
+    fraction = scale_range / pow(10, exponent)## Fractional part of scale_range.
 
-  exponent = floor(log10(scaleRange));
-  fraction = scaleRange / pow(10, exponent);
+  var NICE_FRACTION: float ## Nice, rounded fraction.
 
   if doRound:
     if fraction < 1.5:
-      niceFraction = 1
+      NICE_FRACTION = 1
     elif fraction < 3:
-      niceFraction = 2
+      NICE_FRACTION = 2
     elif fraction < 7:
-      niceFraction = 5
+      NICE_FRACTION = 5
     else:
-      niceFraction = 10
+      NICE_FRACTION = 10
   else:
     if fraction <= 1:
-      niceFraction = 1
+      NICE_FRACTION = 1
     elif fraction <= 2:
-      niceFraction = 2
+      NICE_FRACTION = 2
     elif fraction <= 5:
-      niceFraction = 5
+      NICE_FRACTION = 5
     else:
-      niceFraction = 10
+      NICE_FRACTION = 10
 
-  return niceFraction * pow(10, exponent)
+  return NICE_FRACTION * pow(10, exponent)
 
-proc calculate*(x: var NiceScale) =
+proc calculate*(X: var Nice_scale) =
   ## Calculates the value of output fields based on the input fields.
   ##
-  ## Feel free to modify any of `minPoint`, `maxPoint` or `maxTicks` before
-  ## calling this. Then the proc will modify the `tickSpacing`, `niceMax` and
-  ## `niceMax` fields.
+  ## Feel free to modify any of `min_point`, `max_point` or `max_ticks` before
+  ## calling this. Then the proc will modify the `tick_spacing`, `nice_max` and
+  ## `nice_max` fields.
   ##
-  ## The `maxTicks` field has to be zero or positive. The `maxPoint` field has
-  ## to be always bigger than `minPoint`.
-  assert x.maxPoint > x.minPoint, "Wrong input range!"
-  assert x.maxTicks >= 0, "Sorry, can't have imaginary ticks!"
-  let scaleRange = niceNum(x.maxPoint - x.minPoint, false)
-  if x.maxTicks < 2:
-    x.niceMin = floor(x.minPoint)
-    x.niceMax = ceil(x.maxPoint)
-    x.tickSpacing = (x.niceMax - x.niceMin) /
-      (if x.maxTicks == 1: 2.0 else: 1.0)
+  ## The `max_ticks` field has to be zero or positive. The `max_point` field
+  ## has to be always bigger than `min_point`.
+  assert X.max_point > X.min_point, "Wrong input range!"
+  assert X.max_ticks >= 0, "Sorry, can't have imaginary ticks!"
+  let scale_range = nice_num(X.max_point - X.min_point, false)
+  if X.max_ticks < 2:
+    X.nice_min = floor(X.min_point)
+    X.nice_max = ceil(X.max_point)
+    X.tick_spacing = (X.nice_max - X.nice_min) /
+      (if X.max_ticks == 1: 2.0 else: 1.0)
   else:
-    x.tickSpacing = niceNum(scaleRange / (float(x.maxTicks - 1)), true)
-    x.niceMin = floor(x.minPoint / x.tickSpacing) * x.tickSpacing
-    x.niceMax = ceil(x.maxPoint / x.tickSpacing) * x.tickSpacing
+    X.tick_spacing = nice_num(scale_range / (float(X.max_ticks - 1)), true)
+    X.nice_min = floor(X.min_point / X.tick_spacing) * X.tick_spacing
+    X.nice_max = ceil(X.max_point / X.tick_spacing) * X.tick_spacing
 
 when isMainModule:
-  var s = initScale(97.2, 103.3)
+  var S = init_nice_scale(97.2, 103.3)
   echo "Using default spacing:"
-  echo s
+  echo S
   echo "Try now a single and zero ticks!"
-  s.maxTicks = 1
-  s.calculate
-  echo s
-  s.maxTicks = 0
-  s.calculate
-  echo s
+  S.max_ticks = 1
+  S.calculate
+  echo S
+  S.max_ticks = 0
+  S.calculate
+  echo S
   #echo "Now we will crash in debug versions!"
-  #s.maxTicks = -42
-  #s.calculate
-  #echo s
+  #S.max_ticks = -42
+  #S.calculate
+  #echo S
