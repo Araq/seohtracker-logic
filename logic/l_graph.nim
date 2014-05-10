@@ -13,7 +13,7 @@
 import math, strutils, l_log
 
 const
-  default_max_tricks* = 10
+  default_max_ticks* = 10
 
 type Nice_scale* {.exportc.} = object ## \
   ## Stores the input and output parameters of the scale computation.
@@ -42,10 +42,10 @@ proc `$`*(x: Nice_scale): string =
     "\nOutput tick_spacing: " & x.tick_spacing.ff &
     "\n"
 
-proc calculate*(X: var Nice_scale)
+proc calculate*(X: var Nice_scale) {.raises: [].}
 
 proc init*(X: var Nice_scale; min_point, max_point: float;
-    max_ticks = default_max_tricks) =
+    max_ticks = default_max_ticks) =
   ## Initializes a Nice_scale variable.
   ##
   ## Pass the minimum and maximum values of the axis and the number of ticks.
@@ -53,11 +53,11 @@ proc init*(X: var Nice_scale; min_point, max_point: float;
   ## can already grab the output values.
   X.min_point = min_point
   X.max_point = max_point
-  X.max_ticks = default_max_tricks
+  X.max_ticks = max_ticks
   X.calculate
 
 proc init_nice_scale*(min_point, max_point: float;
-    max_ticks = default_max_tricks): Nice_scale =
+    max_ticks = default_max_ticks): Nice_scale =
   ## Shortcut for initialisations in variable blocks.
   result.init(min_point, max_point, max_ticks)
 
