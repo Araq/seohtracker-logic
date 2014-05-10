@@ -1,9 +1,10 @@
 # `Seohtracker logic <https://github.com/gradha/seohtracker-logic>`_ ObjC
 # interface.
 #
-# For documentation see that module's API, this is just a wrapper around types.
+# For documentation see those moduless API, this is mostly a wrapper around
+# their procs with explicit ``exportc`` pragmas.
 
-import l_main, times, l_types
+import l_main, times, l_types, l_graph
 
 proc get_weight_string(): cstring {.exportc, raises: [].} =
   result = l_main.get_weight_string()
@@ -110,3 +111,7 @@ proc alternating_day(w: PWeight): bool {.exportc, raises: [].} =
 proc changes_day(w: PWeight): bool {.exportc, raises: [].} =
   if w.isNil: result = false
   else: result = w[].changes_day
+
+proc calculate_scale(X: var Nice_scale;
+    min_point, max_point: float; max_ticks: int) {.exportc, raises: [].} =
+  X.init(min_point, max_point, max_ticks)

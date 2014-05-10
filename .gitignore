@@ -25,6 +25,7 @@ xcuserdata/
 /logic/l_main
 /nakefile
 /objc_interface/README.html
+/objc_interface/nim/n_global
 /resources/html/*.html
 /tests/csv_export/dump_out.csv
 /tests/csv_export/seohyun.sqlite3
