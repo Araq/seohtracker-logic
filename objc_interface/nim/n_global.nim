@@ -112,6 +112,30 @@ proc changes_day(w: PWeight): bool {.exportc, raises: [].} =
   if w.isNil: result = false
   else: result = w[].changes_day
 
-proc calculate_scale(X: var Nice_scale;
-    min_point, max_point: float; max_ticks: int) {.exportc, raises: [].} =
-  X.init(min_point, max_point, max_ticks)
+proc malloc_scale(min_point, max_point: float;
+    max_ticks: int): ref Nice_scale {.exportc, raises: [].} =
+  ## Calculates the nice scaling for an axis.
+  ##
+  ## Returns a memory allocated structure which you have to later free with
+  ## ``free_scale``.
+  result.new()
+  result.GC_ref
+  result[].init(min_point, max_point, max_ticks)
+
+proc scale_tick_spacing(x: ref Nice_scale): float {.exportc, raises: [].} =
+  ## Returns the tick_spacing field of Nice_scale.
+  result = x.tick_spacing
+
+proc scale_nice_min(x: ref Nice_scale): float {.exportc, raises: [].} =
+  ## Returns the nice_min field of Nice_scale.
+  result = x.nice_min
+
+proc scale_nice_max(x: ref Nice_scale): float {.exportc, raises: [].} =
+  ## Returns the nice_max field of Nice_scale.
+  result = x.nice_max
+
+proc free_scale(x: ref Nice_scale) {.exportc.} =
+  ## You are required to call this on structures returned by ``malloc_scale``.
+  ##
+  ## Otherwise you will leak memory in Nimrod space.
+  x.GC_unref

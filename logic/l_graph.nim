@@ -15,18 +15,20 @@ import math, strutils, l_log
 const
   default_max_ticks* = 10
 
-type Nice_scale* {.exportc.} = object ## \
-  ## Stores the input and output parameters of the scale computation.
-  ##
-  ## You need to initialize a Nice_scale object and then call the ``calculate``
-  ## proc to contain meaningful output values. Call ``calculate`` again if you
-  ## modify the input parameters.
-  min_point*: float ## Input, the minimum point to be displayed by the graph.
-  max_point*: float ## Input, the maximum point to be displayed by the graph.
-  max_ticks*: int ## Input, maximum number of ticks in the axis.
-  tick_spacing*: float ## Output, distance between ticks on the ideal axis.
-  nice_min*: float ## Output, optimal minimum value to start the axis.
-  nice_max*: float ## Output, optimal maximum value to end the axis.
+type
+  Nice_scale* {.exportc.} = object ## \
+    ## Stores the input and output parameters of the scale computation.
+    ##
+    ## You need to initialize a Nice_scale object and then call the
+    ## ``calculate`` proc to contain meaningful output values. Call
+    ## ``calculate`` again if you modify the input parameters.
+    min_point*: float ## Input, the minimum point to be displayed by the graph.
+    max_point*: float ## Input, the maximum point to be displayed by the graph.
+    max_ticks*: int ## Input, maximum number of ticks in the axis.
+    tick_spacing*: float ## Output, distance between ticks on the ideal axis.
+    nice_min*: float ## Output, optimal minimum value to start the axis.
+    nice_max*: float ## Output, optimal maximum value to end the axis.
+  PNice_scale* {.exportc.} = ref Nice_scale
 
 proc ff(x: float): string =
   ## Wrapper around strutils.formatFloat for less typing.
