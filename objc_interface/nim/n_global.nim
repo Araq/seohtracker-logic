@@ -124,18 +124,22 @@ proc malloc_scale(min_point, max_point: float;
 
 proc scale_tick_spacing(x: ref Nice_scale): float {.exportc, raises: [].} =
   ## Returns the tick_spacing field of Nice_scale.
+  if x.isNil: return
   result = x.tick_spacing
 
 proc scale_nice_min(x: ref Nice_scale): float {.exportc, raises: [].} =
   ## Returns the nice_min field of Nice_scale.
+  if x.isNil: return
   result = x.nice_min
 
 proc scale_nice_max(x: ref Nice_scale): float {.exportc, raises: [].} =
   ## Returns the nice_max field of Nice_scale.
+  if x.isNil: return
   result = x.nice_max
 
 proc free_scale(x: ref Nice_scale) {.exportc.} =
   ## You are required to call this on structures returned by ``malloc_scale``.
   ##
   ## Otherwise you will leak memory in Nimrod space.
+  if x.isNil: return
   x.GC_unref

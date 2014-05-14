@@ -104,7 +104,7 @@ proc calculate*(X: var Nice_scale) =
   ##
   ## The `max_ticks` field has to be zero or positive. The `max_point` field
   ## has to be always bigger than `min_point`.
-  assert X.max_point > X.min_point, "Wrong input range!"
+  assert X.max_point >= X.min_point, "Wrong input range!"
   assert X.max_ticks >= 0, "Sorry, can't have imaginary ticks!"
   let scale_range = nice_num(X.max_point - X.min_point, false)
   if X.max_ticks < 2:
