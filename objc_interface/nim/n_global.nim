@@ -1,9 +1,10 @@
 # `Seohtracker logic <https://github.com/gradha/seohtracker-logic>`_ ObjC
 # interface.
 #
-# For documentation see that module's API, this is just a wrapper around types.
+# For documentation see those moduless API, this is mostly a wrapper around
+# their procs with explicit ``exportc`` pragmas.
 
-import l_main, times, l_types
+import l_main, times, l_types, l_graph
 
 proc get_weight_string(): cstring {.exportc, raises: [].} =
   result = l_main.get_weight_string()
@@ -110,3 +111,31 @@ proc alternating_day(w: PWeight): bool {.exportc, raises: [].} =
 proc changes_day(w: PWeight): bool {.exportc, raises: [].} =
   if w.isNil: result = false
   else: result = w[].changes_day
+
+proc malloc_scale(min_point, max_point: float;
+    max_ticks: int): ref Nice_scale {.exportc, raises: [].} =
+  ## Calculates the nice scaling for an axis.
+  ##
+  ## Returns a memory allocated structure which you have to later free with
+  ## ``free_scale``.
+  result.new()
+  result.GC_ref
+  result[].init(min_point, max_point, max_ticks)
+
+proc scale_tick_spacing(x: ref Nice_scale): float {.exportc, raises: [].} =
+  ## Returns the tick_spacing field of Nice_scale.
+  result = x.tick_spacing
+
+proc scale_nice_min(x: ref Nice_scale): float {.exportc, raises: [].} =
+  ## Returns the nice_min field of Nice_scale.
+  result = x.nice_min
+
+proc scale_nice_max(x: ref Nice_scale): float {.exportc, raises: [].} =
+  ## Returns the nice_max field of Nice_scale.
+  result = x.nice_max
+
+proc free_scale(x: ref Nice_scale) {.exportc.} =
+  ## You are required to call this on structures returned by ``malloc_scale``.
+  ##
+  ## Otherwise you will leak memory in Nimrod space.
+  x.GC_unref
