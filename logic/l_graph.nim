@@ -114,6 +114,8 @@ proc calculate*(X: var Nice_scale) =
       (if X.max_ticks == 1: 2.0 else: 1.0)
   else:
     X.tick_spacing = nice_num(scale_range / (float(X.max_ticks - 1)), true)
+    # When the range is zero we get division by zero. Patch that.
+    if X.tick_spacing <= 0: X.tick_spacing = 1
     X.nice_min = floor(X.min_point / X.tick_spacing) * X.tick_spacing
     X.nice_max = ceil(X.max_point / X.tick_spacing) * X.tick_spacing
 
@@ -126,6 +128,11 @@ when isMainModule:
   S.calculate
   echo S
   S.max_ticks = 0
+  S.calculate
+  echo S
+  S.max_point = 42;
+  S.min_point = 42;
+  S.max_ticks = 10;
   S.calculate
   echo S
   #echo "Now we will crash in debug versions!"
