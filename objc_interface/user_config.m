@@ -9,6 +9,7 @@
 
 
 static NSString *k_user_metric_preference = @"USER_METRIC_PREFERENCE";
+static NSString *k_user_refuses_tracking = @"USER_REFUSES_TRACKING";
 static NSString *k_config_changelog_version = @"USER_CHANGELOG_VERSION";
 static NSString *k_ad_index_preference = @"AD_INDEX";
 
@@ -75,6 +76,27 @@ void set_user_metric_preference(int value)
     set_nimrod_metric_use_based_on_user_preferences();
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center postNotificationName:user_metric_prefereces_changed object:nil];
+}
+
+/** Returns the user analytics tracking preference.
+ *
+ * This will be true if the user hasn't set anything.
+ */
+bool analytics_tracking_preference(void)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    return ![d boolForKey:k_user_refuses_tracking];
+}
+
+/** Saves the analytics tracking preference of the user.
+ *
+ * See analytics_tracking_preference() for valid values.
+ */
+void set_analytics_tracking_preference(bool doit)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    [d setBool:!doit forKey:k_user_refuses_tracking];
+    [d synchronize];
 }
 
 /** Returns true if the system is set up to use the metric system.

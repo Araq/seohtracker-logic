@@ -14,3 +14,6 @@ int get_ad_index(void);
 
 void set_nimrod_metric_use_based_on_user_preferences(void);
 void configure_metric_locale(void);
+
+bool analytics_tracking_preference(void);
+void set_analytics_tracking_preference(bool doit);
