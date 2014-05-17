@@ -9,6 +9,8 @@ v5.3, ????-??-??
 
 * `Implemented algorithm to find graph scale axis optimal ticks
   <https://github.com/gradha/seohtracker-logic/issues/13>`_.
+* `Implemented objc usage tracking settings
+  <https://github.com/gradha/seohtracker-logic/issues/17>`_.
 
 v5.2, 2014-04-07
 ----------------
