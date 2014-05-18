@@ -4,6 +4,11 @@ Seohtracker logic changes log
 
 Changes for https://github.com/gradha/seohtracker-logic.
 
+v6.1, ????-??-??
+----------------
+
+* Nothing yet.
+
 v6, 2014-05-18
 --------------
 
