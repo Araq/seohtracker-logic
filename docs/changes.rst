@@ -4,8 +4,8 @@ Seohtracker logic changes log
 
 Changes for https://github.com/gradha/seohtracker-logic.
 
-v5.3, ????-??-??
-----------------
+v6, 2014-05-18
+--------------
 
 * `Implemented algorithm to find graph scale axis optimal ticks
   <https://github.com/gradha/seohtracker-logic/issues/13>`_.
