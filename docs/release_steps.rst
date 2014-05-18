@@ -1,6 +1,9 @@
-====================================
-What to do for a new public release?
-====================================
+========================================================
+What to do for a new public release of Seohtracker logic
+========================================================
+
+Release steps for `Seohtracker logic
+<https://github.com/gradha/seohtracker-logic>`_.
 
 * Create new milestone with version number.
 * Create new dummy issue `Release versionname` and assign to that milestone.
