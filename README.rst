@@ -25,6 +25,12 @@ you to install `nake <https://github.com/fowlmouth/nake>`_ and check out this
 repository using the ``--recursive`` switch, since it depends on other repos
 for documentation generation.
 
+Alternatively you can take a look at
+`http://gradha.github.io/seohtracker-logic/
+<http://gradha.github.io/seohtracker-logic/>`_ which contains a pre generated
+version of the documentation.
+
+
 Changes
 =======
 
