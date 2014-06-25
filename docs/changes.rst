@@ -9,6 +9,8 @@ v6.1, ????-??-??
 
 * `Added objc functions to disable analytics collection
   <https://github.com/gradha/seohtracker-logic/issues/20>`_.
+* `Added objc functions to ask about analytics collection
+  <https://github.com/gradha/seohtracker-logic/issues/21>`_.
 
 v6, 2014-05-18
 --------------
