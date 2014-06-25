@@ -17,3 +17,6 @@ void configure_metric_locale(void);
 
 bool analytics_tracking_preference(void);
 void set_analytics_tracking_preference(bool doit);
+
+bool did_reset_analytics_preference(void);
+void set_did_reset_analytics_preference(void);

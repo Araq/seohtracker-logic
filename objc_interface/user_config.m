@@ -8,10 +8,11 @@
 #import "ELHASO.h"
 
 
+static NSString *k_ad_index_preference = @"AD_INDEX";
+static NSString *k_config_changelog_version = @"USER_CHANGELOG_VERSION";
+static NSString *k_did_reset_analytics = @"USER_DID_RESET_ANALYTICS";
 static NSString *k_user_metric_preference = @"USER_METRIC_PREFERENCE";
 static NSString *k_user_refuses_tracking = @"USER_REFUSES_TRACKING";
-static NSString *k_config_changelog_version = @"USER_CHANGELOG_VERSION";
-static NSString *k_ad_index_preference = @"AD_INDEX";
 
 
 /** Returns the current user setting changelog value.
@@ -96,6 +97,25 @@ void set_analytics_tracking_preference(bool doit)
 {
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     [d setBool:!doit forKey:k_user_refuses_tracking];
+    [d synchronize];
+}
+
+/** Returns the value of the analytics resetting preference during 6.2.
+ *
+ * Returns true if the value exists and was reset.
+ */
+bool did_reset_analytics_preference(void)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    return [d boolForKey:k_did_reset_analytics];
+}
+
+/** Saves the analytics resetting witness.
+ */
+void set_did_reset_analytics_preference(void)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    [d setBool:YES forKey:k_did_reset_analytics];
     [d synchronize];
 }
 
