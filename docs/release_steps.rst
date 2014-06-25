@@ -1,11 +1,12 @@
-========================================================
-What to do for a new public release of Seohtracker logic
-========================================================
+===============================
+Seohtracker logic release steps
+===============================
 
 Release steps for `Seohtracker logic
 <https://github.com/gradha/seohtracker-logic>`_.
 
-* Create new milestone with version number.
+* Create new milestone with version number (vXXX) at
+  https://github.com/gradha/seohtracker-logic/issues/milestones.
 * Create new dummy issue `Release versionname` and assign to that milestone.
 * ``git flow release start versionname`` (versionname without v).
 * Update version numbers:

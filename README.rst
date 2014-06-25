@@ -1,6 +1,6 @@
-=================
-Seohtracker logic
-=================
+========================
+Seohtracker logic readme
+========================
 
 This is the module containing the logic for clients like `Seohtracker for iOS
 <https://github.com/gradha/seohtracker-ios>`_ or `Seohtracker for Mac
@@ -25,10 +25,16 @@ you to install `nake <https://github.com/fowlmouth/nake>`_ and check out this
 repository using the ``--recursive`` switch, since it depends on other repos
 for documentation generation.
 
+Alternatively you can take a look at
+`http://gradha.github.io/seohtracker-logic/
+<http://gradha.github.io/seohtracker-logic/>`_ which contains a pre generated
+version of the documentation.
+
+
 Changes
 =======
 
-This is stable version v6. For a list of changes see the
+This is stable version v6.2.0. For a list of changes see the
 `docs/changes.rst file <docs/changes.rst>`_.
 
 

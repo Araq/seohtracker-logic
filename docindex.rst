@@ -16,7 +16,10 @@ Available documentation files for `Seohtracker logic
 The following files are generated HTML documentation, you need to run ``nake
 doc`` at the root of the project to obtain them:
 
- * `logic/l_db.html <logic/l_db.html>`_.
- * `logic/l_log.html <logic/l_log.html>`_.
  * `logic/l_main.html <logic/l_main.html>`_.
+
+ * `logic/l_db.html <logic/l_db.html>`_.
+ * `logic/l_graph.html <logic/l_graph.html>`_.
+ * `logic/l_log.html <logic/l_log.html>`_.
  * `logic/l_types.html <logic/l_types.html>`_.
+ * `logic/supernake.html <logic/supernake.html>`_.

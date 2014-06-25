@@ -2,7 +2,17 @@
 Seohtracker logic changes log
 =============================
 
-Changes for https://github.com/gradha/seohtracker-logic.
+Changes for `Seohtracker logic <https://github.com/gradha/seohtracker-logic>`_.
+
+v6.2.0, 2014-06-25
+------------------
+
+* `Added objc functions to disable analytics collection
+  <https://github.com/gradha/seohtracker-logic/issues/20>`_.
+* `Added objc functions to ask about analytics collection
+  <https://github.com/gradha/seohtracker-logic/issues/21>`_.
+* `Updated docstring hyperlinks
+  <https://github.com/gradha/seohtracker-logic/issues/19>`_.
 
 v6, 2014-05-18
 --------------

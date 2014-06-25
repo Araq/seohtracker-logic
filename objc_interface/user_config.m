@@ -8,10 +8,16 @@
 #import "ELHASO.h"
 
 
+/// Allow three days to elapse before asking the analytics question.
+#define k_initial_usage_seconds (60 * 60 * 24 * 3)
+
+static NSString *k_ad_index_preference = @"AD_INDEX";
+static NSString *k_config_changelog_version = @"USER_CHANGELOG_VERSION";
+static NSString *k_did_ask_analytics = @"USER_DID_ASK_ANALYTICS";
+static NSString *k_did_reset_analytics = @"USER_DID_RESET_ANALYTICS";
+static NSString *k_first_launch = @"USER_FIRST_LAUNCH";
 static NSString *k_user_metric_preference = @"USER_METRIC_PREFERENCE";
 static NSString *k_user_refuses_tracking = @"USER_REFUSES_TRACKING";
-static NSString *k_config_changelog_version = @"USER_CHANGELOG_VERSION";
-static NSString *k_ad_index_preference = @"AD_INDEX";
 
 
 /** Returns the current user setting changelog value.
@@ -96,6 +102,85 @@ void set_analytics_tracking_preference(bool doit)
 {
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     [d setBool:!doit forKey:k_user_refuses_tracking];
+    [d synchronize];
+}
+
+/** Returns the value of the analytics resetting preference during 6.2.
+ *
+ * Returns true if the value exists and was reset.
+ */
+bool did_reset_analytics_preference(void)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    return [d boolForKey:k_did_reset_analytics];
+}
+
+/** Saves the analytics resetting witness.
+ */
+void set_did_reset_analytics_preference(void)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    [d setBool:YES forKey:k_did_reset_analytics];
+    [d synchronize];
+}
+
+/** Returns true if its the right time to ask the analytics question.
+ *
+ * The analytics question is done only if the user has never answered it
+ * before, and if enough time has elapsed since the potential first run.
+ */
+bool should_ask_analytics_question(void)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    // Did we already ask?
+    const BOOL done = [d boolForKey:k_did_ask_analytics];
+    if (done)
+        return false;
+
+    // Has the user stored a previous launch mark?
+    const time_t first = get_first_launch_timestamp();
+    if (0 == first)
+        return false;
+
+    // Has enough time elapsed to make the question?
+    const long dif = labs(time(0) - first);
+    if (dif > k_initial_usage_seconds)
+        return true;
+    else
+        return false;
+}
+
+/** Saves the analytics resetting witness.
+ */
+void set_did_answer_analytics_question(void)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    [d setBool:YES forKey:k_did_ask_analytics];
+    [d synchronize];
+}
+
+/** Returns the elapsed seconds since epoch of the first launch timestamp.
+ *
+ * Returns zero if set_first_launch_timestamp() has not been called yet.
+ */
+time_t get_first_launch_timestamp(void)
+{
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    return [d integerForKey:k_first_launch];
+}
+
+/** Sets the current timestamp as the first launch if needed.
+ *
+ * If a previous call to set_first_launch_timestamp() was done, this doesn't do
+ * anything.
+ */
+void set_first_launch_timestamp(void)
+{
+    if (0 != get_first_launch_timestamp())
+        return;
+
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    [d setInteger:time(0) forKey:k_first_launch];
     [d synchronize];
 }
 
