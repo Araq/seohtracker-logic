@@ -2,12 +2,14 @@
 Seohtracker csv format
 ======================
 
-Starting with v4 of Seohtracker, users can export and import CSV (comma
-separated values) files for backup purposes. There is no versioning for CSV
-files, so this lists whatever changes went in during each public release. Also,
-CSV files are not necessarily meant to be backwards compatible: newer versions
-of Seohtracker will attempt to read older CSV files, but older versions of
-Seohtracker might fail horribly importing newer CSV versions (or not).
+Starting with v4 of `Seohtracker
+<https://github.com/gradha/seohtracker-logic>`_, users can export and import
+CSV (comma separated values) files for backup purposes. There is no versioning
+for CSV files, so this lists whatever changes went in during each public
+release. Also, CSV files are not necessarily meant to be backwards compatible:
+newer versions of Seohtracker will attempt to read older CSV files, but older
+versions of Seohtracker might fail horribly importing newer CSV versions (or
+not).
 
 Importation of CSV files ignores all extraneous or non parseable content. This
 allows the CSV file to contain a small header for human readable purposes.

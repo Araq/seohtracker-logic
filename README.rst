@@ -1,6 +1,6 @@
-=================
-Seohtracker logic
-=================
+========================
+Seohtracker logic readme
+========================
 
 This is the module containing the logic for clients like `Seohtracker for iOS
 <https://github.com/gradha/seohtracker-ios>`_ or `Seohtracker for Mac
