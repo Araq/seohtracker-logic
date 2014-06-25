@@ -1,6 +1,6 @@
-========================================================
-What to do for a new public release of Seohtracker logic
-========================================================
+===============================
+Seohtracker logic release steps
+===============================
 
 Release steps for `Seohtracker logic
 <https://github.com/gradha/seohtracker-logic>`_.

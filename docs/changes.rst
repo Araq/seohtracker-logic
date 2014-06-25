@@ -2,7 +2,8 @@
 Seohtracker logic changes log
 =============================
 
-Changes for https://github.com/gradha/seohtracker-logic.
+Changes for `Seohtracker logic <https://github.com/gradha/seohtracker-logic>`_.
+
 
 v6.1, ????-??-??
 ----------------

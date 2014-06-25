@@ -2,10 +2,11 @@
 Seohtracker database format
 ===========================
 
-This documents the different versions the internal database has gone through.
-The strategy of the database is to have it auto update itself. The database
-doesn't actually know how to create a database in the last version. Instead, it
-always creates a database for version 1, then from that on applies upgrade
+This documents the different versions the internal `Seohtracker
+<https://github.com/gradha/seohtracker-logic>`_ database has gone through.  The
+strategy of the database is to have it auto update itself. The database doesn't
+actually know how to create a database in the last version. Instead, it always
+creates a database for version 1, then from that on applies upgrade
 modification queries. All the upgrade paths have to work on existing data.
 
 Implicit constants
