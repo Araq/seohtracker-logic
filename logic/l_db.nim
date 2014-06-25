@@ -49,7 +49,8 @@ proc open_database*(path): Tdb_conn {.raises: [EDb].} =
   ##
   ## If the database doesn't exist it will be created.
   ##
-  ## Once the database has been opened, you should run update_database() on it.
+  ## Once the database has been opened, you should run `update() <#update>`_ on
+  ## it.
   let
     conn = open(path, "user", "pass", "db")
     queries = [sql"""CREATE TABLE IF NOT EXISTS Weights (

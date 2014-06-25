@@ -3,18 +3,21 @@
 ##
 ## This is the module that clients have to import. It keeps some global
 ## variables around to preserve the state between calls and simplify the API. A
-## client should first open a database connection with ``open_db`` passing a
-## platform specific path for file storage. The ``close_db`` proc can be used
-## to cleanly close the database.
+## client should first open a database connection with `open_db <#open_db>`_
+## passing a platform specific path for file storage. The `close_db
+## <#close_db>`_ proc can be used to cleanly close the database.
 ##
 ## Some global variables are used for localization and formatting, so you might
 ## need to set those, preferably before opening the database connection.  These
-## are ``set_decimal_separator`` and ``specify_metric_use``.
+## are `set_decimal_separator <#set_decimal_separator>`_ and
+## `specify_metric_use <#specify_metric_use>`_.
 ##
 ## Once the database is open, you can use different procs to access the stored
-## data: ``add_weight``, ``remove_weight``, ``get_num_weights``, ``find_pos``,
-## ``modify_weight_date``, ``modify_weight_value``, etc. See all the other
-## exported procs for information.
+## data: `add_weight <#add_weight>`_, `remove_weight <#remove_weight>`_,
+## `get_num_weights <#get_num_weights>`_, `find_pos <#find_pos>`_,
+## `modify_weight_date <#modify_weight_date>`_, `modify_weight_value
+## <#modify_weight_value>`_, etc. See all the other exported procs for
+## information.
 ##
 ## To browse the constants and other types used here, browse the `l_types
 ## module <l_types.html>`_.
@@ -29,7 +32,7 @@ var
   DB_CONN: Tdb_conn ## Stores the database connection, convenience for objc.
   VALUES: seq[PWeight] = @[]
   DECIMAL_SEPARATOR = nim_decimal_separator
-  WEIGHT_DEFAULT = pounds
+  WEIGHT_DEFAULT* = pounds
   INVALID_CHARS = AllChars - ({nim_decimal_separator} + Digits)
 
 
@@ -153,9 +156,9 @@ proc get_db*(): Tdb_conn =
 proc db_exists*(path: string): bool {.raises: [].} =
   ## Returns true if the database exists at the specified path.
   ##
-  ## Use this before calling open_db, since opening an sqlite database already
-  ## generates a zero byte file. This proc doesn't modify the current DB_PATH
-  ## global.
+  ## Use this before calling `open_db <#open_db>`_, since opening an sqlite
+  ## database already generates a zero byte file. This proc doesn't modify the
+  ## current DB_PATH global.
   if path.isNil: return false
   let db_path = path / db_name
   result = db_path.existsFile
@@ -224,9 +227,9 @@ proc modify_weight_date*(w: PWeight, value: TTime,
   ## Modifies the date of a weight entry.
   ##
   ## Since weights are sorted by date, this could change their position.
-  ## Therefore the method stores into old_pos and new_pos the old/new positions
-  ## in VALUES. If anything goes wrong, negative values will be stored. Pass
-  ## the weight you want to modify, and the new date.
+  ## Therefore the method stores into `old_pos` and `new_pos` the old/new
+  ## positions in VALUES. If anything goes wrong, negative values will be
+  ## stored. Pass the weight you want to modify, and the new date.
   assert (not DB_CONN.isNil)
   old_pos = w.find_pos
   if old_pos < 0:
@@ -359,9 +362,9 @@ proc is_weight_input_valid*(future: string): bool {.raises: [].} =
 
 
 proc export_database_to_csv*(csv_filename: string): bool {.raises: [].} =
-  ## Takes the current database content and writes it into csv_filename.
+  ## Takes the current database content and writes it into `csv_filename`.
   ##
-  ## Pass a full path to csv_filename. Returns true if the proc didn't found
+  ## Pass a full path to `csv_filename`. Returns true if the proc didn't found
   ## any problems. If false is returned, you may need to remove any half
   ## created file at the specified path.
   if DB_CONN.isNil or csv_filename.isNil: return
@@ -379,7 +382,7 @@ proc scan_csv_for_entries*(csv_filename: string): int {.raises: [].} =
 
 proc import_csv_into_db*(csv_filename: string, replace: bool):
     bool {.raises: [].} =
-  ## Reads csv_filename and adds its contents to the global database.
+  ## Reads `csv_filename` and adds its contents to the global database.
   ##
   ## If replace is true, the database will first be deleted. Returns false if
   ## there was any problem during the whole process.

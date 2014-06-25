@@ -69,7 +69,6 @@ proc `weight=`*(s: var TWeight, value: float) =
 
 proc weight*(s: PWeight): float =
   ## Getter for the weight attribute.
-  #dlog("Getter for weight for " & $s.Fweight)
   if s.isNil: return
   return s[].Fweight
 
