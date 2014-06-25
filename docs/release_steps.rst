@@ -28,6 +28,15 @@ Release steps for `Seohtracker logic
 
 * ``git commit -av`` into ``master`` with `Bumps version numbers for
   development version. Refs #release issue`.
-* Push all to git: ``git push origin master stable --tags``.
+
+* Regenerate static website.
+
+  * ``git checkout gh-pages`` to switch to ``gh-pages``.
+  * ``rm -Rf `git ls-files -o` docs`` to purge files from other branches
+    and force regeneration of all docs, even tags.
+  * ``gh_nimrod_doc_pages -c . && git add . && git commit``. Tag with
+    `Regenerates website. Refs #release_issue`.
+
+* Push all to git: ``git push origin master stable gh-pages --tags``.
 * Close the dummy release issue.
 * Close the milestone on github.
