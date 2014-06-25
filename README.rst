@@ -34,7 +34,7 @@ version of the documentation.
 Changes
 =======
 
-This is stable version v6.2.0. For a list of changes see the
+This is development version v6.2.1. For a list of changes see the
 `docs/changes.rst file <docs/changes.rst>`_.
 
 
