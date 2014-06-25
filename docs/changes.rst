@@ -7,7 +7,8 @@ Changes for https://github.com/gradha/seohtracker-logic.
 v6.1, ????-??-??
 ----------------
 
-* Nothing yet.
+* `Added objc functions to disable analytics collection
+  <https://github.com/gradha/seohtracker-logic/issues/20>`_.
 
 v6, 2014-05-18
 --------------
