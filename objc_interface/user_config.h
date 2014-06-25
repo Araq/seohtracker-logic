@@ -20,3 +20,9 @@ void set_analytics_tracking_preference(bool doit);
 
 bool did_reset_analytics_preference(void);
 void set_did_reset_analytics_preference(void);
+
+bool should_ask_analytics_question(void);
+void set_did_answer_analytics_question(void);
+
+time_t get_first_launch_timestamp(void);
+void set_first_launch_timestamp(void);
