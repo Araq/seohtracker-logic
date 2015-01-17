@@ -8,6 +8,11 @@
 <title>Index</title>
 <style type="text/css">
 
+body {
+  color: black;
+  background: white;
+}
+
 span.DecNumber {color: blue}
 span.BinNumber {color: blue}
 span.HexNumber {color: blue}
@@ -20,7 +25,7 @@ span.LongStringLit {color: blue}
 span.CharLit {color: blue}
 span.EscapeSequence {color: black}
 span.Operator {color: black}
-span.Punctuation {color: black}
+span.Punctation {color: black}
 span.Comment, span.LongComment {font-style:italic; color: green}
 span.RegularExpression  {color: DarkViolet}
 span.TagStart {color: DarkViolet}
@@ -239,343 +244,561 @@ a.reference:hover {color: #E00000;background-color: #ffff00;display: margin;
 <body>
 <div class="document" id="documentId">
 <h1 class="title">Index</h1>
-<dt><span>`$`</span></dt><ul class="simple"><dd>
+<p>Documents: <a href="docs/csv_format.html">Seohtracker csv format</a>, <a href="docs/database_format.html">Seohtracker database format</a>, <a href="docs/changes.html">Seohtracker logic changes log</a>, <a href="docindex.html">Seohtracker logic documentation index</a>, <a href="LICENSE.html">Seohtracker logic license</a>, <a href="README.html">Seohtracker logic readme</a>, <a href="docs/release_steps.html">Seohtracker logic release steps</a>.<br><p />Modules: <a href="logic/l_db.html">l_db</a>, <a href="logic/l_graph.html">l_graph</a>, <a href="logic/l_log.html">l_log</a>, <a href="logic/l_main.html">l_main</a>, <a href="external/quicklook-rest-with-nimrod/nim/logging.html">logging</a>, <a href="logic/l_types.html">l_types</a>, <a href="external/quicklook-rest-with-nimrod/nim/rester.html">rester</a>, <a href="logic/supernake.html">supernake</a>.<br><p /><h2>Documentation files</h2>
+<ul><li><a href="docs/csv_format.html">Seohtracker csv format</a>
+<ul>
+<li><a href="docs/csv_format.html#v4-initial-version">v4, initial version</a>
+</ul>
+</ul>
+<ul><li><a href="docs/database_format.html">Seohtracker database format</a>
+<ul>
+<li><a href="docs/database_format.html#implicit-constants">Implicit constants</a>
+<ul><li><a href="docs/database_format.html#weights-table-weight-type-constants">Weights table, weight_type constants</a>
+</ul><li><a href="docs/database_format.html#version-0">Version 0</a>
+<ul><li><a href="docs/database_format.html#weights-table">Weights table</a>
+<li><a href="docs/database_format.html#globals-table">Globals table</a>
+</ul><li><a href="docs/database_format.html#version-1">Version 1</a>
+<li><a href="docs/database_format.html#version-2">Version 2</a>
+</ul>
+</ul>
+<ul><li><a href="docs/changes.html">Seohtracker logic changes log</a>
+<ul>
+<li><a href="docs/changes.html#v6-2-0-2014-06-25">v6.2.0, 2014-06-25</a>
+<li><a href="docs/changes.html#v6-2014-05-18">v6, 2014-05-18</a>
+<li><a href="docs/changes.html#v5-2-2014-04-07">v5.2, 2014-04-07</a>
+<li><a href="docs/changes.html#v5-2014-04-01">v5, 2014-04-01</a>
+<li><a href="docs/changes.html#v4-2014-03-06">v4, 2014-03-06</a>
+</ul>
+</ul>
+<ul><li><a href="docindex.html">Seohtracker logic documentation index</a>
+<ul>
+</ul>
+</ul>
+<ul><li><a href="LICENSE.html">Seohtracker logic license</a>
+<ul>
+</ul>
+</ul>
+<ul><li><a href="README.html">Seohtracker logic readme</a>
+<ul>
+<li><a href="README.html#license">License</a>
+<li><a href="README.html#documentation">Documentation</a>
+<li><a href="README.html#changes">Changes</a>
+<li><a href="README.html#git-branches">Git branches</a>
+<li><a href="README.html#feedback">Feedback</a>
+</ul>
+</ul>
+<ul><li><a href="docs/release_steps.html">Seohtracker logic release steps</a>
+<ul>
+</ul>
+</ul>
+<h2>API symbols</h2>
+<dt><span>`$`:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Debug formatter of the Nice_scale structure." href="logic/l_graph.html#$,Nice_scale">l_graph : `$`*(x: Nice_scale): string</a></li>
           <li><a class="reference external"
-          title="Remove this when https://github.com/Araq/Nimrod/issues/749 is fixed." href="logic/l_log.html#$,ref.E_base">l_log : `$`*(e: ref E_base): string</a></li>
+          title="Remove this when https:&#x2F;&#x2F;github.com&#x2F;Araq&#x2F;Nimrod&#x2F;issues&#x2F;749 is fixed." href="logic/l_log.html#$,ref.E_base">l_log : `$`*(e: ref E_base): string</a></li>
           <li><a class="reference external"
-          title="Debugging/logging helper of weights." href="logic/l_types.html#$,PWeight">l_types : `$`*(x: PWeight): string</a></li>
+          title="Debugging&#x2F;logging helper of weights." href="logic/l_types.html#$,PWeight">l_types : `$`*(x: PWeight): string</a></li>
           </ul></dd>
-<dt><span>`date=`</span></dt><ul class="simple"><dd>
+<dt><span>`date=`:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Setter for the date attribute.…" href="logic/l_types.html#=,TWeight,TTime">l_types : `date =`*(s: var TWeight; value: TTime)</a></li>
           </ul></dd>
-<dt><span>`id=`</span></dt><ul class="simple"><dd>
+<dt><span>`id=`:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Setter for the id attribute." href="logic/l_types.html#=,TWeight,int">l_types : `id =`*(s: var TWeight; value: int)</a></li>
           </ul></dd>
-<dt><span>`typ=`</span></dt><ul class="simple"><dd>
+<dt><span>`typ=`:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Setter for the type of the weight." href="logic/l_types.html#=,TWeight,Weight_type">l_types : `typ =`*(s: var TWeight; value: Weight_type)</a></li>
           </ul></dd>
-<dt><span>`weight=`</span></dt><ul class="simple"><dd>
+<dt><span>`weight=`:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Setter for the weight attribute.…" href="logic/l_types.html#=,TWeight,float">l_types : `weight =`*(s: var TWeight; value: float)</a></li>
           </ul></dd>
-<dt><span>add_weight</span></dt><ul class="simple"><dd>
+<dt><span>add_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Inserts a weight into the database.…" href="logic/l_db.html#add_weight,Tdb_conn,float,Weight_type,TTime">l_db : add_weight*(conn: Tdb_conn; weight: float; typ: Weight_type; 
             ddate: TTime = TTime(0)): tuple[w: PWeight, pos: int]</a></li>
           <li><a class="reference external"
           title="Adds a new weight to the database.…" href="logic/l_main.html#add_weight,float">l_main : add_weight*(weight: float): int</a></li>
           </ul></dd>
-<dt><span>build_csv_file</span></dt><ul class="simple"><dd>
+<dt><span>build_csv_file:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Reads through the open database and dumps it to the specified file.…" href="logic/l_db.html#build_csv_file,TDbConn,string">l_db : build_csv_file*(conn: TDbConn; out_filename: string): bool</a></li>
           </ul></dd>
-<dt><span>calculate</span></dt><ul class="simple"><dd>
+<dt><span>calculate:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_graph.html#calculate,Nice_scale">l_graph : calculate*(X: var Nice_scale)</a></li>
           <li><a class="reference external"
           title="Calculates the value of output fields based on the input fields.…" href="logic/l_graph.html#calculate,Nice_scale_2">l_graph : calculate*(X: var Nice_scale)</a></li>
           </ul></dd>
-<dt><span>change_rst_links_to_html</span></dt><ul class="simple"><dd>
+<dt><span>change_rst_links_to_html:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Opens the file, iterates hrefs and changes them to .html if they are .rst." href="logic/supernake.html#change_rst_links_to_html,string">supernake : change_rst_links_to_html*(html_file: string)</a></li>
           </ul></dd>
-<dt><span>close_db</span></dt><ul class="simple"><dd>
+<dt><span>change_rst_options:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="Changes the current global options.…" href="external/quicklook-rest-with-nimrod/nim/rester.html#change_rst_options,string">rester : change_rst_options*(options: string): bool</a></li>
+          </ul></dd>
+<dt><span>close_db:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Mostly for unit tests, closes the sqlite and clears the global variables.…" href="logic/l_main.html#close_db,">l_main : close_db*()</a></li>
           </ul></dd>
-<dt><span>date</span></dt><ul class="simple"><dd>
+<dt><span>date:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Getter for the Fdate attribute.…" href="logic/l_types.html#date,PWeight">l_types : date*(s: PWeight): TTime</a></li>
           </ul></dd>
-<dt><span>day_date</span></dt><ul class="simple"><dd>
+<dt><span>day_date:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the day_date field of PWeight, which may need recalculation.…" href="logic/l_types.html#day_date,PWeight">l_types : day_date*(w: PWeight): string</a></li>
           <li><a class="reference external"
           title="Returns the day_date field of PWeight, which may need recalculation." href="logic/l_types.html#day_date,TWeight">l_types : day_date*(w: var TWeight): string</a></li>
           </ul></dd>
-<dt><span>db_exists</span></dt><ul class="simple"><dd>
+<dt><span>db_exists:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns true if the database exists at the specified path.…" href="logic/l_main.html#db_exists,string">l_main : db_exists*(path: string): bool</a></li>
           </ul></dd>
-<dt><span>db_name</span></dt><ul class="simple"><dd>
+<dt><span>db_name:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_types.html#db_name">l_types : db_name</a></li>
           </ul></dd>
-<dt><span>default_max_ticks</span></dt><ul class="simple"><dd>
+<dt><span>debug:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logs a debug message" href="external/quicklook-rest-with-nimrod/nim/logging.html#debug.t,string,varargs[string,]">logging : debug*(frmt: string; args: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><span>defaultFilename:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="returns the default filename for a logger" href="external/quicklook-rest-with-nimrod/nim/logging.html#defaultFilename,">logging : defaultFilename*(): string</a></li>
+          </ul></dd>
+<dt><span>defaultFmtStr:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="default string between log level and message per logger" href="external/quicklook-rest-with-nimrod/nim/logging.html#defaultFmtStr">logging : defaultFmtStr</a></li>
+          </ul></dd>
+<dt><span>default_max_ticks:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_graph.html#default_max_ticks">l_graph : default_max_ticks</a></li>
           </ul></dd>
-<dt><span>dlog</span></dt><ul class="simple"><dd>
+<dt><span>dlog:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Debug logging, goes away in release builds." href="logic/l_log.html#dlog.t,varargs[string,]">l_log : dlog*(x: varargs[string, `$`])</a></li>
           </ul></dd>
-<dt><span>elog</span></dt><ul class="simple"><dd>
+<dt><span>elog:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_log.html#elog,varargs[string,]">l_log : elog*(x: varargs[string, `$`])</a></li>
           </ul></dd>
-<dt><span>exists_value</span></dt><ul class="simple"><dd>
+<dt><span>error:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logs an error message" href="external/quicklook-rest-with-nimrod/nim/logging.html#error.t,string,varargs[string,]">logging : error*(frmt: string; args: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><span>exists_value:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Iterates s in search of a value x which has the same date, weight and type.…" href="logic/l_types.html#exists_value,seq[PWeight],PWeight">l_types : exists_value*(s: seq[PWeight]; x: PWeight): bool</a></li>
           </ul></dd>
-<dt><span>exlog</span></dt><ul class="simple"><dd>
+<dt><span>exlog:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Exception template, use inside except handlers to log exception message." href="logic/l_log.html#exlog.t,varargs[string,]">l_log : exlog*(x: varargs[string, `$`])</a></li>
           </ul></dd>
-<dt><span>export_database_to_csv</span></dt><ul class="simple"><dd>
+<dt><span>export_database_to_csv:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Takes the current database content and writes it into `csv_filename`.…" href="logic/l_main.html#export_database_to_csv,string">l_main : export_database_to_csv*(csv_filename: string): bool</a></li>
           </ul></dd>
-<dt><span>find_first_version_header</span></dt><ul class="simple"><dd>
+<dt><span>fatal:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logs a fatal error message" href="external/quicklook-rest-with-nimrod/nim/logging.html#fatal.t,string,varargs[string,]">logging : fatal*(frmt: string; args: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><span>find_first_version_header:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns greater than zero if a header node with version was found." href="logic/supernake.html#find_first_version_header,PRstNode">supernake : find_first_version_header*(node: PRstNode): float</a></li>
           </ul></dd>
-<dt><span>find_pos</span></dt><ul class="simple"><dd>
+<dt><span>find_pos:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Finds the position of the weight in based on the identifier.…" href="logic/l_main.html#find_pos,PWeight">l_main : find_pos*(w: PWeight): int</a></li>
           </ul></dd>
-<dt><span>format_iso</span></dt><ul class="simple"><dd>
+<dt><span>format_iso:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Convenience helper to transform a date into the CSV export date format." href="logic/l_types.html#format_iso,TTimeInfo">l_types : format_iso*(info: TTimeInfo): string</a></li>
           </ul></dd>
-<dt><span>format_weight</span></dt><ul class="simple"><dd>
+<dt><span>format_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Formats the weight for the UI.…" href="logic/l_main.html#format_weight,PWeight,bool">l_main : format_weight*(s: PWeight; add_mass: bool): string</a></li>
           </ul></dd>
-<dt><span>format_weight_with_current_unit</span></dt><ul class="simple"><dd>
+<dt><span>format_weight_with_current_unit:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Formats the weight for the UI.…" href="logic/l_main.html#format_weight_with_current_unit,PWeight">l_main : format_weight_with_current_unit*(s: PWeight): string</a></li>
           </ul></dd>
-<dt><span>generate_version_constant</span></dt><ul class="simple"><dd>
+<dt><span>generate_version_constant:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Scans the src rst file and generates an output C header with a version.…" href="logic/supernake.html#generate_version_constant,In_out">supernake : generate_version_constant*(target: In_out)</a></li>
           </ul></dd>
-<dt><span>get_db</span></dt><ul class="simple"><dd>
+<dt><span>get_db:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="For unit testing, returns the current global database connection.…" href="logic/l_main.html#get_db,">l_main : get_db*(): Tdb_conn</a></li>
           </ul></dd>
-<dt><span>get_decimal_separator</span></dt><ul class="simple"><dd>
+<dt><span>get_decimal_separator:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the currently used decimal separator." href="logic/l_main.html#get_decimal_separator,">l_main : get_decimal_separator*(): char</a></li>
           </ul></dd>
-<dt><span>get_last_weight</span></dt><ul class="simple"><dd>
+<dt><span>get_global_html:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="Copies the result of txt_to_rst into output_buffer.…" href="external/quicklook-rest-with-nimrod/nim/rester.html#get_global_html,pointer">rester : get_global_html*(output_buffer: pointer)</a></li>
+          </ul></dd>
+<dt><span>get_last_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the last weight or nil if none was available." href="logic/l_main.html#get_last_weight,">l_main : get_last_weight*(): PWeight</a></li>
           </ul></dd>
-<dt><span>get_localized_weight</span></dt><ul class="simple"><dd>
+<dt><span>get_localized_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the localized weight to the current global weight unit.…" href="logic/l_main.html#get_localized_weight,PWeight">l_main : get_localized_weight*(s: PWeight): float</a></li>
           </ul></dd>
-<dt><span>get_metric_use</span></dt><ul class="simple"><dd>
+<dt><span>get_metric_use:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the current weight default." href="logic/l_main.html#get_metric_use,">l_main : get_metric_use*(): Weight_type</a></li>
           </ul></dd>
-<dt><span>get_num_weights</span></dt><ul class="simple"><dd>
+<dt><span>get_num_weights:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the number of entries in the Weight table.…" href="logic/l_db.html#get_num_weights,Tdb_conn">l_db : get_num_weights*(conn: Tdb_conn): int</a></li>
           <li><a class="reference external"
           title="Returns the number of weights stored in the database." href="logic/l_main.html#get_num_weights,">l_main : get_num_weights*(): int</a></li>
           </ul></dd>
-<dt><span>get_weight</span></dt><ul class="simple"><dd>
+<dt><span>get_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the weight at the specified position or nil for out of bounds." href="logic/l_main.html#get_weight,int">l_main : get_weight*(pos: int): PWeight</a></li>
           </ul></dd>
-<dt><span>get_weights_page</span></dt><ul class="simple"><dd>
+<dt><span>get_weights_page:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the weights just below the specified identifier.…" href="logic/l_db.html#get_weights_page,Tdb_conn">l_db : get_weights_page*(conn: Tdb_conn; last_known_id = - 1; page_size = 5): seq[
     PWeight]</a></li>
           </ul></dd>
-<dt><span>get_weight_string</span></dt><ul class="simple"><dd>
+<dt><span>get_weight_string:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Allows C code know the string for the current WEIGHT_DEFAULT setting." href="logic/l_main.html#get_weight_string,">l_main : get_weight_string*(): string not nil</a></li>
           </ul></dd>
-<dt><span>glob_rst</span></dt><ul class="simple"><dd>
+<dt><span>glob_rst:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Shortcut to simplify getting lists of files." href="logic/supernake.html#glob_rst.t,string">supernake : glob_rst*(basedir: string): expr</a></li>
           </ul></dd>
-<dt><span>id</span></dt><ul class="simple"><dd>
+<dt><span>handlers:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="handlers with their own log levels" href="external/quicklook-rest-with-nimrod/nim/logging.html#handlers">logging : handlers</a></li>
+          </ul></dd>
+<dt><span>id:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Getter for the id attribute." href="logic/l_types.html#id,TWeight">l_types : id*(s: TWeight): int</a></li>
           </ul></dd>
-<dt><span>import_csv_into_db</span></dt><ul class="simple"><dd>
+<dt><span>import_csv_into_db:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Imports the values into the database.…" href="logic/l_db.html#import_csv_into_db,TDbConn,seq[PWeight],bool">l_db : import_csv_into_db*(conn: TDbConn; values: seq[PWeight]; replace: bool): bool</a></li>
           <li><a class="reference external"
           title="Reads `csv_filename` and adds its contents to the global database.…" href="logic/l_main.html#import_csv_into_db,string,bool">l_main : import_csv_into_db*(csv_filename: string; replace: bool): bool</a></li>
           </ul></dd>
-<dt><span>init</span></dt><ul class="simple"><dd>
+<dt><span>info:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logs an info message" href="external/quicklook-rest-with-nimrod/nim/logging.html#info.t,string,varargs[string,]">logging : info*(frmt: string; args: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><span>init:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Initializes a Nice_scale variable.…" href="logic/l_graph.html#init,Nice_scale,float,float">l_graph : init*(X: var Nice_scale; min_point, max_point: float; 
       max_ticks = default_max_ticks)</a></li>
           </ul></dd>
-<dt><span>init_nice_scale</span></dt><ul class="simple"><dd>
+<dt><span>init_nice_scale:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Shortcut for initialisations in variable blocks." href="logic/l_graph.html#init_nice_scale,float,float">l_graph : init_nice_scale*(min_point, max_point: float; max_ticks = default_max_ticks): Nice_scale</a></li>
           </ul></dd>
-<dt><span>init_weight</span></dt><ul class="simple"><dd>
+<dt><span>init_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns a new weight object with the specified weight and date.…" href="logic/l_types.html#init_weight,int,TTime,float,Weight_type">l_types : init_weight*(id: int; date: TTime; weight: float; typ: Weight_type): PWeight</a></li>
           </ul></dd>
-<dt><span>In_out</span></dt><ul class="simple"><dd>
+<dt><span>In_out:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="The tuple only contains file paths." href="logic/supernake.html#In_out">supernake : In_out</a></li>
           </ul></dd>
-<dt><span>is_weight_input_valid</span></dt><ul class="simple"><dd>
+<dt><span>is_weight_input_valid:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Validates a future input string as value for user_input_to_float.…" href="logic/l_main.html#is_weight_input_valid,string">l_main : is_weight_input_valid*(future: string): bool</a></li>
           </ul></dd>
-<dt><span>kg_str</span></dt><ul class="simple"><dd>
+<dt><span>kg_str:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_types.html#kg_str">l_types : kg_str</a></li>
           </ul></dd>
-<dt><span>lb_str</span></dt><ul class="simple"><dd>
+<dt><span>lb_str:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_types.html#lb_str">l_types : lb_str</a></li>
           </ul></dd>
-<dt><span>log</span></dt><ul class="simple"><dd>
-<li><a class="reference external" href="logic/l_log.html#log,varargs[string,]">l_log : log*(x: varargs[string, `$`])</a></li>
+<dt><span>level:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="global log filter" href="external/quicklook-rest-with-nimrod/nim/logging.html#level">logging : level</a></li>
           </ul></dd>
-<dt><span>max_weight</span></dt><ul class="simple"><dd>
+<dt><span>LevelNames:</span></dt><ul class="simple"><dd>
+<li><a class="reference external" href="external/quicklook-rest-with-nimrod/nim/logging.html#LevelNames">logging : LevelNames</a></li>
+          </ul></dd>
+<dt><span>log:</span></dt><ul class="simple"><dd>
+<li><a class="reference external" href="external/quicklook-rest-with-nimrod/nim/logging.html#log.e,ref.TConsoleLogger,TLevel,string,varargs[string,]">logging : log*(L: ref TConsoleLogger; level: TLevel; frmt: string; 
+     args: varargs[string, `$`])</a></li>
+          <li><a class="reference external" href="external/quicklook-rest-with-nimrod/nim/logging.html#log.e,ref.TFileLogger,TLevel,string,varargs[string,]">logging : log*(L: ref TFileLogger; level: TLevel; frmt: string; args: varargs[string, `$`])</a></li>
+          <li><a class="reference external"
+          title="override this method in custom loggers. Default implementation does…" href="external/quicklook-rest-with-nimrod/nim/logging.html#log.e,ref.TLogger,TLevel,string,varargs[string,]">logging : log*(L: ref TLogger; level: TLevel; frmt: string; args: varargs[string, `$`])</a></li>
+          <li><a class="reference external" href="external/quicklook-rest-with-nimrod/nim/logging.html#log.e,ref.TRollingFileLogger,TLevel,string,varargs[string,]">logging : log*(L: ref TRollingFileLogger; level: TLevel; frmt: string; 
+     args: varargs[string, `$`])</a></li>
+          <li><a class="reference external"
+          title="logs a message of the given level" href="external/quicklook-rest-with-nimrod/nim/logging.html#log.t,TLevel,string,varargs[string,]">logging : log*(level: TLevel; frmt: string; args: varargs[string, `$`])</a></li>
+          <li><a class="reference external" href="logic/l_log.html#log,varargs[string,]">l_log : log*(x: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><span>max_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the maximum weight in the current default unit.…" href="logic/l_main.html#max_weight,">l_main : max_weight*(): int</a></li>
           </ul></dd>
-<dt><span>modify_weight_date</span></dt><ul class="simple"><dd>
+<dt><span>modify_weight_date:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Modifies the date of a weight entry.…" href="logic/l_main.html#modify_weight_date,PWeight,TTime,int,int">l_main : modify_weight_date*(w: PWeight; value: TTime; old_pos, new_pos: var int)</a></li>
           </ul></dd>
-<dt><span>modify_weight_value</span></dt><ul class="simple"><dd>
+<dt><span>modify_weight_value:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Changes the weight of an existing weight element.…" href="logic/l_main.html#modify_weight_value,PWeight,float">l_main : modify_weight_value*(w: PWeight; value: float): int</a></li>
           </ul></dd>
-<dt><span>needs_refresh</span></dt><ul class="simple"><dd>
+<dt><span>needs_refresh:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Wrapper around the normal needs_refresh for In_out types." href="logic/supernake.html#needs_refresh,In_out">supernake : needs_refresh*(target: In_out): bool</a></li>
           </ul></dd>
-<dt><span>Nice_scale</span></dt><ul class="simple"><dd>
+<dt><span>newConsoleLogger:</span></dt><ul class="simple"><dd>
+<li><a class="reference external" href="external/quicklook-rest-with-nimrod/nim/logging.html#newConsoleLogger,">logging : newConsoleLogger*(levelThreshold = lvlAll): ref TConsoleLogger</a></li>
+          </ul></dd>
+<dt><span>newFileLogger:</span></dt><ul class="simple"><dd>
+<li><a class="reference external" href="external/quicklook-rest-with-nimrod/nim/logging.html#newFileLogger,TFileMode">logging : newFileLogger*(filename = defaultFilename(); mode: TFileMode = fmAppend; 
+               levelThreshold = lvlAll): ref TFileLogger</a></li>
+          </ul></dd>
+<dt><span>newRollingFileLogger:</span></dt><ul class="simple"><dd>
+<li><a class="reference external" href="external/quicklook-rest-with-nimrod/nim/logging.html#newRollingFileLogger,TFileMode">logging : newRollingFileLogger*(filename = defaultFilename(); 
+                      mode: TFileMode = fmReadWrite; levelThreshold = lvlAll; 
+                      maxLines = 1000): ref TRollingFileLogger</a></li>
+          </ul></dd>
+<dt><span>Nice_scale:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="\…" href="logic/l_graph.html#Nice_scale">l_graph : Nice_scale</a></li>
           </ul></dd>
-<dt><span>nim_decimal_separator</span></dt><ul class="simple"><dd>
+<dt><span>nim_decimal_separator:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_types.html#nim_decimal_separator">l_types : nim_decimal_separator</a></li>
           </ul></dd>
-<dt><span>nimrod_doc</span></dt><ul class="simple"><dd>
+<dt><span>nim_file_to_html:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="Puts filename into a code block and renders like rst file.…" href="external/quicklook-rest-with-nimrod/nim/rester.html#nim_file_to_html,string">rester : nim_file_to_html*(filename: string): string</a></li>
+          </ul></dd>
+<dt><span>nimrod_doc:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Runs ``nimrod doc`` on the input file, quitting if something goes wrong." href="logic/supernake.html#nimrod_doc,string,string">supernake : nimrod_doc*(nim_file, html_file: string)</a></li>
           </ul></dd>
-<dt><span>num_decimals</span></dt><ul class="simple"><dd>
+<dt><span>num_decimals:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_types.html#num_decimals">l_types : num_decimals</a></li>
           </ul></dd>
-<dt><span>open_database</span></dt><ul class="simple"><dd>
+<dt><span>open_database:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Creates or opens the database.…" href="logic/l_db.html#open_database,">l_db : open_database*(path): Tdb_conn</a></li>
           </ul></dd>
-<dt><span>open_db</span></dt><ul class="simple"><dd>
+<dt><span>open_db:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Opens the database.…" href="logic/l_main.html#open_db,string">l_main : open_db*(path: string): bool</a></li>
           </ul></dd>
-<dt><span>parse_csv</span></dt><ul class="simple"><dd>
+<dt><span>parse_csv:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the list of weights as read from the input file.…" href="logic/l_db.html#parse_csv,string">l_db : parse_csv*(input_filename: string): seq[PWeight]</a></li>
           </ul></dd>
-<dt><span>PNice_scale</span></dt><ul class="simple"><dd>
+<dt><span>PNice_scale:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_graph.html#PNice_scale">l_graph : PNice_scale</a></li>
           </ul></dd>
-<dt><span>PWeight</span></dt><ul class="simple"><dd>
+<dt><span>PWeight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_types.html#PWeight">l_types : PWeight</a></li>
           </ul></dd>
-<dt><span>release_weight</span></dt><ul class="simple"><dd>
+<dt><span>release_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Exports to c a way to unmark a retained object.…" href="logic/l_types.html#release_weight,PWeight">l_types : release_weight*(w: var PWeight)</a></li>
           </ul></dd>
-<dt><span>remove_weight</span></dt><ul class="simple"><dd>
+<dt><span>remove_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Removes the specified weight identifier, returns number of rows removed.…" href="logic/l_db.html#remove_weight,Tdb_conn,PWeight">l_db : remove_weight*(conn: Tdb_conn; weight: PWeight): int64</a></li>
           <li><a class="reference external"
           title="Removes the specified weight from the database.…" href="logic/l_main.html#remove_weight,PWeight">l_main : remove_weight*(weight: PWeight): int</a></li>
           </ul></dd>
-<dt><span>retain_weight</span></dt><ul class="simple"><dd>
+<dt><span>retain_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Exports to c a way to mark an object retained.…" href="logic/l_types.html#retain_weight,PWeight">l_types : retain_weight*(w: PWeight)</a></li>
           </ul></dd>
-<dt><span>rst2html</span></dt><ul class="simple"><dd>
+<dt><span>rst2html:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Converts the rst file to html, setting options in the process if not nil.…" href="logic/supernake.html#rst2html,In_out">supernake : rst2html*(file: In_out)</a></li>
           <li><a class="reference external"
           title="Converts the filename `src` into `out_path` or src with extension changed." href="logic/supernake.html#rst2html,string">supernake : rst2html*(src: string; out_path = &quot;&quot;): bool</a></li>
           </ul></dd>
-<dt><span>safe_str</span></dt><ul class="simple"><dd>
+<dt><span>rst_file_to_html:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="Converts a filename with rest content into a string with HTML tags.…" href="external/quicklook-rest-with-nimrod/nim/rester.html#rst_file_to_html,string">rester : rst_file_to_html*(filename: string): string</a></li>
+          </ul></dd>
+<dt><span>rst_string_to_html:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="Converts a content named filename into a string with HTML tags.…" href="external/quicklook-rest-with-nimrod/nim/rester.html#rst_string_to_html,string,string">rester : rst_string_to_html*(content, filename: string): string</a></li>
+          </ul></dd>
+<dt><span>safe_rst_file_to_html:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="Wrapper over rst_file_to_html to catch exceptions.…" href="external/quicklook-rest-with-nimrod/nim/rester.html#safe_rst_file_to_html,string">rester : safe_rst_file_to_html*(filename: string): string</a></li>
+          </ul></dd>
+<dt><span>safe_str:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the string or &quot;(nil)&quot; if the variable is not initialized." href="logic/l_types.html#safe_str,string">l_types : safe_str*(s: string): string</a></li>
           </ul></dd>
-<dt><span>scan_csv_for_entries</span></dt><ul class="simple"><dd>
+<dt><span>scan_csv_for_entries:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the number of entries in the file, or zero on error." href="logic/l_main.html#scan_csv_for_entries,string">l_main : scan_csv_for_entries*(csv_filename: string): int</a></li>
           </ul></dd>
-<dt><span>set_csv_export_gmt_time</span></dt><ul class="simple"><dd>
+<dt><span>set_csv_export_gmt_time:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Sets the exportation to use getGMTime instead of getLocalTime.…" href="logic/l_db.html#set_csv_export_gmt_time,bool">l_db : set_csv_export_gmt_time*(use_gmt: bool)</a></li>
           </ul></dd>
-<dt><span>set_decimal_separator</span></dt><ul class="simple"><dd>
+<dt><span>set_decimal_separator:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Allow native code to initialize the separator for formatting.…" href="logic/l_main.html#set_decimal_separator,char">l_main : set_decimal_separator*(value: char): bool</a></li>
           </ul></dd>
-<dt><span>short</span></dt><ul class="simple"><dd>
+<dt><span>short:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_types.html#short,Weight_type">l_types : short*(x: Weight_type): string not nil</a></li>
           </ul></dd>
-<dt><span>specify_metric_use</span></dt><ul class="simple"><dd>
+<dt><span>specify_metric_use:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Allow native code to specify if the metric system is in use.…" href="logic/l_main.html#specify_metric_use,bool">l_main : specify_metric_use*(uses_metric: bool)</a></li>
           </ul></dd>
-<dt><span>test_rst</span></dt><ul class="simple"><dd>
+<dt><span>substituteLog:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="converts $date to the current date…" href="external/quicklook-rest-with-nimrod/nim/logging.html#substituteLog,string">logging : substituteLog*(frmt: string): string</a></li>
+          </ul></dd>
+<dt><span>TConsoleLogger:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logger that writes the messages to the…" href="external/quicklook-rest-with-nimrod/nim/logging.html#TConsoleLogger">logging : TConsoleLogger</a></li>
+          </ul></dd>
+<dt><span>test_rst:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Calls the rst2html.py script to verify rst compilance of a file.…" href="logic/supernake.html#test_rst,string">supernake : test_rst*(filename: string): bool</a></li>
           </ul></dd>
-<dt><span>timegm</span></dt><ul class="simple"><dd>
+<dt><span>TFileLogger:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logger that writes the messages to a file" href="external/quicklook-rest-with-nimrod/nim/logging.html#TFileLogger">logging : TFileLogger</a></li>
+          </ul></dd>
+<dt><span>timegm:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_db.html#timegm,Ttm">l_db : timegm*(a1: var Ttm): TTime</a></li>
           </ul></dd>
-<dt><span>to_unit</span></dt><ul class="simple"><dd>
+<dt><span>TLevel:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logging level" href="external/quicklook-rest-with-nimrod/nim/logging.html#TLevel">logging : TLevel</a></li>
+          </ul></dd>
+<dt><span>TLogger:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="abstract logger; the base type of all loggers" href="external/quicklook-rest-with-nimrod/nim/logging.html#TLogger">logging : TLogger</a></li>
+          </ul></dd>
+<dt><span>to_unit:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Unit aware weight value getter.…" href="logic/l_types.html#to_unit,PWeight,Weight_type">l_types : to_unit*(w: PWeight; unit: Weight_type): float</a></li>
           </ul></dd>
-<dt><span>TWeight</span></dt><ul class="simple"><dd>
+<dt><span>TRollingFileLogger:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logger that writes the…" href="external/quicklook-rest-with-nimrod/nim/logging.html#TRollingFileLogger">logging : TRollingFileLogger</a></li>
+          </ul></dd>
+<dt><span>TWeight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Internal db identifier of the object." href="logic/l_types.html#TWeight">l_types : TWeight</a></li>
           </ul></dd>
-<dt><span>typ</span></dt><ul class="simple"><dd>
+<dt><span>txt_to_rst:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="Converts the input filename.…" href="external/quicklook-rest-with-nimrod/nim/rester.html#txt_to_rst,cstring">rester : txt_to_rst*(input_filename: cstring): int</a></li>
+          </ul></dd>
+<dt><span>typ:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Getter for the type of weight." href="logic/l_types.html#typ,TWeight">l_types : typ*(s: TWeight): Weight_type</a></li>
           </ul></dd>
-<dt><span>typ_str</span></dt><ul class="simple"><dd>
+<dt><span>typ_str:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Returns the string to format the weight according to its type." href="logic/l_types.html#typ_str,TWeight">l_types : typ_str*(s: TWeight): string</a></li>
           </ul></dd>
-<dt><span>update</span></dt><ul class="simple"><dd>
+<dt><span>update:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Run on an open database to update the schema and everything else needed.…" href="logic/l_db.html#update,Tdb_conn">l_db : update*(db_conn: Tdb_conn)</a></li>
           </ul></dd>
-<dt><span>update_date</span></dt><ul class="simple"><dd>
+<dt><span>update_date:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Modifies the value of the weight, returns its new position in the table.…" href="logic/l_db.html#update_date,Tdb_conn,PWeight,TTime">l_db : update_date*(conn: Tdb_conn; weight: PWeight; value: TTime): int</a></li>
           </ul></dd>
-<dt><span>update_timestamp</span></dt><ul class="simple"><dd>
+<dt><span>update_timestamp:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Wrapper over utimes from posix," href="logic/supernake.html#update_timestamp,string">supernake : update_timestamp*(path: string)</a></li>
           </ul></dd>
-<dt><span>update_weight</span></dt><ul class="simple"><dd>
+<dt><span>update_weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Modifies the value of the weight, returns the number of rows updated.…" href="logic/l_db.html#update_weight,Tdb_conn,PWeight,float,Weight_type">l_db : update_weight*(conn: Tdb_conn; weight: PWeight; value: float; typ: Weight_type): int64</a></li>
           </ul></dd>
-<dt><span>weight</span></dt><ul class="simple"><dd>
+<dt><span>verboseFmtStr:</span></dt><ul class="simple"><dd>
+<li><a class="reference external" href="external/quicklook-rest-with-nimrod/nim/logging.html#verboseFmtStr">logging : verboseFmtStr</a></li>
+          </ul></dd>
+<dt><span>versionInt:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="\…" href="external/quicklook-rest-with-nimrod/nim/rester.html#versionInt">rester : versionInt</a></li>
+          </ul></dd>
+<dt><span>versionStr:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="Module version as a string." href="external/quicklook-rest-with-nimrod/nim/rester.html#versionStr">rester : versionStr</a></li>
+          </ul></dd>
+<dt><span>warn:</span></dt><ul class="simple"><dd>
+<li><a class="reference external"
+          title="logs a warning message" href="external/quicklook-rest-with-nimrod/nim/logging.html#warn.t,string,varargs[string,]">logging : warn*(frmt: string; args: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><span>weight:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="Getter for the weight attribute." href="logic/l_types.html#weight,PWeight">l_types : weight*(s: PWeight): float</a></li>
           </ul></dd>
-<dt><span>WEIGHT_DEFAULT</span></dt><ul class="simple"><dd>
+<dt><span>WEIGHT_DEFAULT:</span></dt><ul class="simple"><dd>
 <li><a class="reference external" href="logic/l_main.html#WEIGHT_DEFAULT">l_main : WEIGHT_DEFAULT</a></li>
           </ul></dd>
-<dt><span>Weight_type</span></dt><ul class="simple"><dd>
+<dt><span>Weight_type:</span></dt><ul class="simple"><dd>
 <li><a class="reference external"
           title="\…" href="logic/l_types.html#Weight_type">l_types : Weight_type</a></li>
           </ul></dd>
+</p>
 
-<small>Generated: 2014-06-25 20:45:29 UTC</small>
+<small>Last modified: 2015-01-17 20:32 UTC. Local time: 2015-01-17 21:32.
+<div id="counter"></div>
+</small>
+<br>Rendered by lazy_rest 0.2.2.
 </div>
 </body>
+<script type="text/javascript">
+// Time difference code from http://stackoverflow.com/q/11479170/172690
+function timeDifference(current, previous) {
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 30;
+    var msPerYear = msPerDay * 365;
+
+    var elapsed = current - previous;
+
+    if (elapsed < msPerMinute) {
+         return Math.round(elapsed/1000) + ' seconds ago';
+    } else if (elapsed < msPerHour) {
+         return Math.round(elapsed/msPerMinute) + ' minutes ago';
+    } else if (elapsed < msPerDay ) {
+         return Math.round(elapsed/msPerHour ) + ' hours ago';
+    } else if (elapsed < msPerMonth) {
+         return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';
+    } else if (elapsed < msPerYear) {
+         return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';
+    } else {
+         return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';
+    }
+}
+
+// Timer base code taken from http://stackoverflow.com/a/11876480/172690
+window.onload = function() {
+    var fileTime = new Date(1421526738000);
+	var ctr = document.getElementById("counter");
+
+    function incrementCounter() {
+		var nowTime = new Date();
+		var relTime = timeDifference(nowTime, fileTime)
+		ctr.innerHTML = relTime;
+		// Update ourselves in the future, every five seconds.
+		setTimeout(incrementCounter, 5000);
+    }
+
+    incrementCounter();
+}
+</script>
+
 </html>
